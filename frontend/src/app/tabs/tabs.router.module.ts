@@ -8,29 +8,29 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'todo',
+        path: 'tasks',
         children: [
           {
             path: '',
-            loadChildren: './todo/todo.module#TodoPageModule'
+            loadChildren: './tasks/tasks.module#TasksPageModule'
           }
         ]
       },
       {
-        path: 'projects',
+        path: 'today',
         children: [
           {
             path: '',
-            loadChildren: './projects/projects.module#ProjectsPageModule'
+            loadChildren: './tasks/tasks.module#TasksPageModule'
           }
         ]
       },
       {
-        path: 'timerecord',
+        path: 'calendar',
         children: [
           {
             path: '',
-            loadChildren: './timerecord/timerecord.module#TimerecordPageModule'
+            loadChildren: './calendar/calendar.module#CalendarPageModule'
           }
         ]
       },
