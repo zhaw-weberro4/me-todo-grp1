@@ -9,3 +9,29 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+
+
+$fontColor: #444;
+
+
+$outerPadding: 14px;
+
+
+/** ---------------------------------------------------------------------------
+  Typography
+------------------------------------------------------------------------------- */
+
+* {
+  color: $fontColor;
+  font-family: "Open Sans";
+}
+
+ion-title {
+  text-align: left;
+  -webkit-padding-start: $outerPadding;
+  padding-inline-start: $outerPadding;
+  -padding-inline-end: $outerPadding;
+  padding-inline-end: $outerPadding;
+}
+
