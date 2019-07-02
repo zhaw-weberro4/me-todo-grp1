@@ -11,12 +11,19 @@
     <ion-item-group>
       <ion-item>
         <ion-label>Inbox</ion-label>
+        <ion-badge color="danger">11</ion-badge>
       </ion-item>
       <ion-item>
         <ion-label>Diese Woche</ion-label>
+        <ion-badge color="danger">11</ion-badge>
       </ion-item>
       <ion-item>
         <ion-label>Irgendwann</ion-label>
+        <ion-badge color="dark">11</ion-badge>
+      </ion-item>
+      <ion-item>
+        <ion-label>Erledigt</ion-label>
+        <ion-badge color="success">11</ion-badge>
       </ion-item>
     </ion-item-group>
     <!-- Gruppe mit allen Projekten -->
@@ -25,11 +32,15 @@
         <ion-label>Projekte</ion-label>
         <ion-icon (click)="addProject()" name="add" slot="end"></ion-icon>
       </ion-item-divider>
-      <ng-container *ngFor="let project of allProjects">
+      <ion-item-sliding *ngFor="let project of allProjects">
+        <ion-item-options side="start">
+          <ion-item-option (click)="deleteProject(project)" color="danger">Delete</ion-item-option>
+        </ion-item-options>
         <ion-item *ngIf="!project.standard">
           <ion-label>{{project.title}}</ion-label>
+          <ion-badge color="primary">11</ion-badge>
         </ion-item>
-      </ng-container>
+      </ion-item-sliding>
     </ion-item-group>
     <!-- Gruppe mit allen Tags -->
     <ion-item-group>
@@ -37,24 +48,15 @@
         <ion-label>Tags</ion-label>
         <ion-icon (click)="addTag()" name="add" slot="end"></ion-icon>
       </ion-item-divider>
-      <ion-item>
-        <ion-label>Tag 1</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Tag 2</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Tag 3</ion-label>
-      </ion-item>
-    </ion-item-group>
-    <!-- Gruppe mit allen Erledigten Tasks -->
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>Erledigt</ion-label>
-      </ion-item-divider>
-      <ion-item>
-        <ion-label>Alle</ion-label>
-      </ion-item>
+      <ion-item-sliding *ngFor="let tag of allTags">
+        <ion-item-options side="start">
+          <ion-item-option (click)="deleteTag(tag)" color="danger">Delete</ion-item-option>
+        </ion-item-options>
+        <ion-item >
+          <ion-label>{{tag.title}}</ion-label>
+          <ion-badge color="secondary">8</ion-badge>
+        </ion-item>
+      </ion-item-sliding>
     </ion-item-group>
   </ion-list>
 
