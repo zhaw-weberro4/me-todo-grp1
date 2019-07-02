@@ -3,10 +3,10 @@
     <ion-title>Task bearbeiten</ion-title>
   </ion-toolbar>
 </ion-header>
-
+ 
 <ion-content>
   <ion-item>
-    <ion-label position="stacked">Titel</ion-label>
+    <ion-label position="stacked">{{this.editTask.title}}</ion-label>
     <ion-input></ion-input>
   </ion-item>
   <ion-item>
@@ -33,4 +33,5 @@
       <ion-select-option value="m">Male</ion-select-option>
     </ion-select>
   </ion-item>
+  <ion-button (click)='overrideTask()'>Fertig</ion-button>
 </ion-content>
