@@ -5,7 +5,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
-  { path: 'task-view', loadChildren: './tabs/tasks/task-view/task-view.module#TaskViewPageModule' },
+  /* { path: 'task-view', loadChildren: './tabs/tasks/task-view/task-view.module#TaskViewPageModule' }, */
 
 
 

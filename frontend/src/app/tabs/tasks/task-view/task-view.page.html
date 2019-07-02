@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>taskView</ion-title>
+    <ion-title>Task bearbeiten</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<p>test</p>
+  <ion-item>
+    <ion-label position="stacked">Titel</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Beschreibung</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Fälligkeitsdatum</ion-label>
+    <ion-datetime displayFormat="DD MM YY" placeholder="Select Date"></ion-datetime>
+  </ion-item>
+  <ion-list-header>Tags</ion-list-header>
+  <ion-chip>
+    <ion-label>Default</ion-label>
+  </ion-chip>
+  <ion-chip color="success">
+    <ion-label color="success">Default</ion-label>
+  </ion-chip>
+  
+  <ion-item>
+    <ion-label>Projekt</ion-label>
+    <ion-select placeholder="Select One">
+      <ion-select-option value="f">Female</ion-select-option>
+      <ion-select-option value="m">Male</ion-select-option>
+    </ion-select>
+  </ion-item>
 </ion-content>
