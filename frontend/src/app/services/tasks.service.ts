@@ -14,7 +14,7 @@ export class TasksService {
       id: 1,
       title: "Budget erstellen",
       description: "Projekt Budget für Bonfire Projekt erstellen",
-      deadline: new Date(),
+      dueDate: new Date(),
       project: {
         id: 1,
         name: "Bonfire",
@@ -30,15 +30,15 @@ export class TasksService {
           name: "High Priority",
         }
       ],
-      archived: false,
       done: false,
-      anytime: false
+      user: "user"
+
     },
     {
       id: 2,
       title: "Finishing Calendar",
       description: "Programming the calendar page for the GTD-App",
-      deadline: new Date(),
+      dueDate: new Date(),
       project: {
         id: 2,
         name: "Skyfall",
@@ -54,15 +54,14 @@ export class TasksService {
           name: "Middle Priority",
         }
       ],
-      archived: false,
       done: false,
-      anytime: false
+      user: "user"
     },
     {
       id: 3,
       title: "Call Amy",
       description: "Congrats Amy to her birthday",
-      deadline: new Date(),
+      dueDate: new Date(),
       project: {
         id: 3,
         name: "Today",
@@ -74,9 +73,8 @@ export class TasksService {
           name: "Phone Call",
         }
       ],
-      archived: false,
       done: false,
-      anytime: false
+      user: "user"
     }
   ];
 

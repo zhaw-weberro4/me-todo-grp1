@@ -5,10 +5,9 @@ export class Task {
     public id: number;
     public title: string;
     public description: string;
-    public deadline: Date;
+    public dueDate: Date;
     public project: Project;
     public tags: Tag[];
-    public archived: boolean;
     public done: boolean;
-    public anytime: boolean;
+    public user: string;
 }

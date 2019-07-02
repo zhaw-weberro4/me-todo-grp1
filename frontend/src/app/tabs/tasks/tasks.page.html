@@ -21,8 +21,7 @@
               {{task.title}}
             </ion-col>
             <ion-col>
-              <ion-button color="danger" *ngIf="!task.done && !task.archived" (click)="finish(task);$event.stopPropagation();">Finish</ion-button>
-              <ion-button color="success" *ngIf="task.done && !task.archived" (click)="archive(task);$event.stopPropagation();">Archive</ion-button>
+              <ion-button color="danger" *ngIf="!task.done" (click)="finish(task);$event.stopPropagation();">Finish</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>

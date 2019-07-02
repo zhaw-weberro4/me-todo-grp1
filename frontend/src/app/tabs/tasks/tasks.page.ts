@@ -39,11 +39,6 @@ export class TasksPage implements OnInit {
       this.updateTask(task);
   }
 
-  async archive(task: Task) {
-    task.archived = true;
-    this.updateTask(task);
-  }
-
   public updateTask(task: Task) {
     this.tasksService.updateTask(task).subscribe(
       data => {
