@@ -1,5 +1,6 @@
 package ch.zhaw.sml.iwi.meng.leantodo.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
@@ -19,8 +20,12 @@ public class TaskController {
         return taskRepository.findByUser(user);
     }
 
-    public void getActiveTaskByProject(Long id, String user) {
+    public List<Task> getActiveTaskByProject(Long id, String user) {
+        return taskRepository.findByProjectIdAndUser(id, user);
+    }
 
+    public List<Task> getArchieve(String user){
+        return taskRepository.findByDone(true);
     }
 
     public void addTask(Task newTask, String user) {
@@ -37,6 +42,35 @@ public class TaskController {
         }
         // Ok, let's overwrite the existing task.
         taskRepository.save(task);
+    }
+
+    public void toggleDone(Task task) {
+        if(task.isDone()) {
+            task.setDone(false);
+        } else {
+            task.setDone(true);
+        }
+    }
+
+    public boolean deleteTask(Task task, String user){
+
+        Task orig = taskRepository.getOne(task.getId());
+        task.setUser(user);
+
+        if(!orig.getUser().equals(task.getUser())) {
+            return false;
+        }
+
+        taskRepository.deleteById(task.getId());
+        return true;
+    }
+
+    public List<Task> getTaskByDueDate(Date dueDate, String user) {
+        return taskRepository.findByDueDateAndUser(dueDate, user);
+    }
+
+    public List<Task> getTaskTimeInterval(Date startDate, Date endDate, String user) {
+        return taskRepository.findByTimeInterval(startDate, endDate, user);
     }
     
 }

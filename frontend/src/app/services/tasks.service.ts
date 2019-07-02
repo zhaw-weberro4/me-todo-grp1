@@ -93,7 +93,7 @@ export class TasksService {
   private apiUrl: string = 'http://localhost:8080';
 
   public getAllTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl + '/api/todo', { withCredentials: true });
+    return this.http.get<Task[]>(this.apiUrl + '/api/tasks', { withCredentials: true });
   }
 
   public addNewTask(newTask: Task) {
