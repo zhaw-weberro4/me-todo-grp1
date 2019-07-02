@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-view',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskViewPage implements OnInit {
 
-  constructor() { }
+  taskId = null;
+
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.taskId = this.activatedRoute.snapshot.paramMap.get('id');
   }
+
+  
 
 }
