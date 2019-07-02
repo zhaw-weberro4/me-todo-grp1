@@ -11,8 +11,13 @@ const routes: Routes = [
         path: 'tasks',
         children: [
           {
-            path: '',
+            path: 'tasks',
             loadChildren: './tasks/tasks.module#TasksPageModule'
+          }
+          ,
+          {
+            path: '', 
+            loadChildren: './tabs/filter/filter.module#FilterPageModule'
           }
         ]
       },
@@ -54,4 +59,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
