@@ -19,13 +19,13 @@ public class TaskController {
         return taskRepository.findByUser(user);
     }
 
-    public void persistToDo(Task newTask, String user) {
+    public void addTask(Task newTask, String user) {
         newTask.setUser(user);
         newTask.setId(null);
         taskRepository.save(newTask);
     }
 
-    public void updateToDo(Task task, String user) {
+    public void updateTask(Task task, String user) {
         Task orig = taskRepository.getOne(task.getId());
         // Check if the original Task was present and that it belonged to the same owner
         if(orig == null || !orig.getUser().equals(user)) {

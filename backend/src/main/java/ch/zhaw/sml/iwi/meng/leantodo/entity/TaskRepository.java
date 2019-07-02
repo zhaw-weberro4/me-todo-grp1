@@ -10,5 +10,7 @@ import org.springframework.stereotype.Repository;
 public interface TaskRepository extends JpaRepository<Task,Long> {
     public List<Task> findByUser(String user);
 
+    public List<Task> findByProject(Project project);
+
     
 }

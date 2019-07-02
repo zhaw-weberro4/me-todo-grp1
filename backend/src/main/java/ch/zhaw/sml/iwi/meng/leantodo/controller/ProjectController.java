@@ -24,10 +24,25 @@ public class ProjectController {
         return projectRepository.findByUser(loginName);
     }
 
-    public void persistProject(Project newProject, String user) {
+    public void addProject(Project newProject, String user) {
         newProject.setId(null);
         newProject.setUser(user);
         projectRepository.save(newProject);
+    }
+
+    public boolean deleteProject(Long id, String user) {
+
+        boolean success = false;
+
+        if(projectRepository.findById(id).isPresent()) {
+            Project project = projectRepository.findById(id).get();
+
+            if(project.getUser().equals(user)) {
+                projectRepository.delete(project);
+                success = true;
+            }
+        }
+        return success;
     }
     
 }
