@@ -13,6 +13,8 @@ export class TasksService {
     {
       id: 1,
       title: "Budget erstellen",
+      description: "Projekt Budget für Bonfire Projekt erstellen",
+      deadline: new Date(),
       project: {
         id: 1,
         name: "Bonfire",
@@ -35,6 +37,8 @@ export class TasksService {
     {
       id: 2,
       title: "Finishing Calendar",
+      description: "Programming the calendar page for the GTD-App",
+      deadline: new Date(),
       project: {
         id: 2,
         name: "Skyfall",
@@ -57,6 +61,8 @@ export class TasksService {
     {
       id: 3,
       title: "Call Amy",
+      description: "Congrats Amy to her birthday",
+      deadline: new Date(),
       project: {
         id: 3,
         name: "Today",
