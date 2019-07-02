@@ -13,7 +13,8 @@ import { TagsService } from 'src/app/services/tags.service';
 })
 export class FilterPage implements OnInit {
 
-  constructor(private router: Router, private projectsService: ProjectsService, private tagsService: TagsService, public alertController: AlertController) { }
+  constructor(private router: Router, private projectsService: ProjectsService, 
+    private tagsService: TagsService, public alertController: AlertController) { }
   public allProjects: Project[] = [];
   public allTags: Tag[] = [];
 
