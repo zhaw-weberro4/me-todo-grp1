@@ -1,5 +1,6 @@
 package ch.zhaw.sml.iwi.meng.leantodo;
 
+import ch.zhaw.sml.iwi.meng.leantodo.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,12 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Role;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.RoleRepository;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDo;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDoRepository;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.User;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.UserRepository;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
+
+import java.util.Date;
 
 @SpringBootApplication
 @EnableWebSecurity
@@ -35,7 +33,13 @@ public class LeanToDo implements CommandLineRunner {
 
     
     @Autowired
-    private ToDoRepository toDoRepository;
+    private TaskRepository taskRepository;
+
+    @Autowired
+    private ProjectRepository projectRepository;
+
+    @Autowired
+    private TagRepository tagRepository;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -64,14 +68,63 @@ public class LeanToDo implements CommandLineRunner {
         u.getRoles().add(r);
         userRepository.save(u);
 
-        ToDo toDo = new ToDo();
-        toDo.setTitle("Finish This app");
-        toDo.setOwner("user");
-        toDoRepository.save(toDo);
+        Project inboxProject = new Project();
+        inboxProject.setTitle("Inbox");
+        inboxProject.setUser("user");
+        inboxProject = projectRepository.save(inboxProject);
 
-        toDo = new ToDo();
-        toDo.setTitle("Reply to student");
-        toDo.setOwner("user");
-        toDoRepository.save(toDo);
+        Project archiveProject = new Project();
+        archiveProject.setTitle("Archive");
+        archiveProject.setUser("user");
+        archiveProject = projectRepository.save(archiveProject);
+
+        Project gtdProject = new Project();
+        gtdProject.setTitle("GTD-Project");
+        gtdProject.setUser("user");
+        gtdProject = projectRepository.save(gtdProject);
+
+        Tag tagOne = new Tag();
+        tagOne.setTitle("Programming");
+        tagOne.setUser("user");
+        tagOne = tagRepository.save(tagOne);
+
+        Tag tagTwo = new Tag();
+        tagTwo.setTitle("Phone Call");
+        tagTwo.setUser("user");
+        tagTwo = tagRepository.save(tagTwo);
+
+        Task taskOne = new Task();
+        taskOne.setTitle("Finish This app");
+        taskOne.setDescription("Programming the GTD App");
+        taskOne.setDueDate(new Date());
+        taskOne.setUser("user");
+        taskOne.addTag(tagOne);
+        taskOne.setProject(archiveProject);
+        taskRepository.save(taskOne);
+
+        Task taskTwo = new Task();
+        taskTwo.setTitle("Reply to student");
+        taskTwo.setDescription("Reply to the monday meeting by Mail.");
+        taskTwo.setDueDate(new Date());
+        taskTwo.setUser("user");
+        taskTwo.addTag(tagTwo);
+        taskTwo.setProject(inboxProject);
+        taskRepository.save(taskTwo);
+
+        Task taskThree = new Task();
+        taskThree.setTitle("Finishing Calendar");
+        taskThree.setDescription("Work until the calendar page works.");
+        taskThree.setDueDate(new Date());
+        taskThree.setUser("user");
+        taskThree.addTag(tagTwo);
+        taskThree.setProject(gtdProject);
+        taskRepository.save(taskThree);
+
+
+
+
+
+
+
     }
 }

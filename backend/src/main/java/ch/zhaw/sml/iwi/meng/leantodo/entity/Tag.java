@@ -1,27 +1,20 @@
 package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
-public class Project {
+public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Long id;
 
     private String title;
 
-    private Boolean standard = false;
-
     private String user;
-
 
     // GETTER AND SETTER
     public Long getId() {
@@ -38,14 +31,6 @@ public class Project {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Boolean getStandard() {
-        return standard;
-    }
-
-    public void setStandard(Boolean standard) {
-        this.standard = standard;
     }
 
     public String getUser() {

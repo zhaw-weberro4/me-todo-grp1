@@ -2,12 +2,14 @@
 export class Project {
     public id: number;
     public name: string;
-    public predefined: boolean;
+    public standard: boolean;
+    public user: string;
 
 
-    constructor(id: number, name: string, predefined: boolean) {
+    constructor(id: number, name: string, standard: boolean, user?: string) {
         this.id = id;
         this.name = name;
-        this.predefined = predefined;
+        this.standard = standard;
+        this.user = user;
     }
 }
