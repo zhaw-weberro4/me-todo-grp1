@@ -20,7 +20,7 @@ const routes: Routes = [
             loadChildren: './filter/filter.module#FilterPageModule'
           },
           {
-            path: 'task-view', 
+            path: 'tasks/:id', 
             loadChildren: './tasks/task-view/task-view.module#TaskViewPageModule'
           }
         ]

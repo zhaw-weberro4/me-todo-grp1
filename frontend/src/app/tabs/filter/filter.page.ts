@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectsService } from 'src/app/services/projects.service';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/model/project'
+import { Tag } from 'src/app/model/tag'
 import { AlertController } from '@ionic/angular';
+import { TagsService } from 'src/app/services/tags.service';
 
 @Component({
   selector: 'app-filter',
@@ -11,15 +13,21 @@ import { AlertController } from '@ionic/angular';
 })
 export class FilterPage implements OnInit {
 
-  constructor(private router: Router, private projectsService: ProjectsService, public alertController: AlertController) { }
+  constructor(private router: Router, private projectsService: ProjectsService, private tagsService: TagsService, public alertController: AlertController) { }
   public allProjects: Project[] = [];
+  public allTags: Tag[] = [];
 
   ngOnInit() {
     this.reloadAllProjects();
+    this.reloadAllTags();
   }
 
   public reloadAllProjects() {
     this.allProjects = this.projectsService.allProjects;
+  }
+
+  public reloadAllTags() {
+    this.allTags = this.tagsService.allTags;
   }
 
   async addProject() {
@@ -74,6 +82,16 @@ export class FilterPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  deleteProject(project: Project) {
+    alert("I will delete the project " + project.title);
+    // TODO delete project
+  }
+
+  deleteTag(tag: Tag) {
+    alert("I will delete the Tag " + tag.title);
+    // TODO delete tag
   }
 
 }
