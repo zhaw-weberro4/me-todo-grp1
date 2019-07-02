@@ -18,6 +18,10 @@ const routes: Routes = [
           {
             path: '', 
             loadChildren: './filter/filter.module#FilterPageModule'
+          },
+          {
+            path: 'task-view', 
+            loadChildren: './tasks/task-view/task-view.module#TaskViewPageModule'
           }
         ]
       },
