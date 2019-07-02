@@ -19,6 +19,10 @@ public class TaskController {
         return taskRepository.findByUser(user);
     }
 
+    public void getActiveTaskByProject(Long id, String user) {
+
+    }
+
     public void addTask(Task newTask, String user) {
         newTask.setUser(user);
         newTask.setId(null);

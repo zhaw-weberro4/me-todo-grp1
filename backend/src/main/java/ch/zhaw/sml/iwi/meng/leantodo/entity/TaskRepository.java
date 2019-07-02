@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
 public interface TaskRepository extends JpaRepository<Task,Long> {
     public List<Task> findByUser(String user);
 
-    public List<Task> findByProject(Project project);
+    @Query("SELECT t FROM Task as t WHERE t.project.id = ?1 AND t.user = ?2 AND t.done = false")
+    public List<Task> findByProjectIdAndUserAndStandard(Long id, User user, Boolean standard);
 
     
 }
