@@ -17,17 +17,20 @@ export class TasksService {
       dueDate: new Date(),
       project: {
         id: 1,
-        name: "Bonfire",
-        predefined: false
+        title: "Bonfire",
+        standard: false,
+        user: "user"
       },
       tags: [
         {
           id: 1,
-          name: "Finance",
+          title: "Finance",
+            user: "user"
         },
         {
           id: 2,
-          name: "High Priority",
+          title: "High Priority",
+            user: "user"
         }
       ],
       done: false,
@@ -41,17 +44,20 @@ export class TasksService {
       dueDate: new Date(),
       project: {
         id: 2,
-        name: "Skyfall",
-        predefined: false
+        title: "Skyfall",
+        standard: false,
+        user: "user"
       },
       tags: [
         {
           id: 3,
-          name: "IT",
+          title: "IT",
+            user: "user"
         },
         {
           id: 4,
-          name: "Middle Priority",
+          title: "Middle Priority",
+            user: "user"
         }
       ],
       done: false,
@@ -64,13 +70,15 @@ export class TasksService {
       dueDate: new Date(),
       project: {
         id: 3,
-        name: "Today",
-        predefined: true
+        title: "Today",
+        standard: true,
+        user: "user"
       },
       tags: [
-        {
-          id: 5,
-          name: "Phone Call",
+          {
+            id: 5,
+            title: "Phone Call",
+            user: "user"
         }
       ],
       done: false,

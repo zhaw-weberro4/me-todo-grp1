@@ -1,13 +1,13 @@
 
 export class Tag {
     public id: number;
-    public name: string;
+    public title: string;
     public user: string;
 
 
-    constructor(id: number, name: string, user?: string) {
+    constructor(id: number, title: string, user?: string) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.user = user;
     }
 }
