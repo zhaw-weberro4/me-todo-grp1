@@ -31,4 +31,8 @@ export class TasksService {
   public getTaskById(id: number): Observable<Task> {
     return this.http.get<Task>(this.apiUrl + '/taskId/' + id, { withCredentials: true });
   }
+
+  public getTaskByDueDate(date): Observable<Task[]> {
+    return this.http.get<Task[]>(this.apiUrl + '/tasks/' + date, { withCredentials: true });
+  }
 }
