@@ -3,8 +3,11 @@ import { ProjectsService } from 'src/app/services/projects.service';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/model/project'
 import { Tag } from 'src/app/model/tag'
+import { Task } from 'src/app/model/task'
 import { AlertController } from '@ionic/angular';
 import { TagsService } from 'src/app/services/tags.service';
+import {TasksService} from "../../services/tasks.service";
+
 
 @Component({
   selector: 'app-filter',
@@ -13,14 +16,24 @@ import { TagsService } from 'src/app/services/tags.service';
 })
 export class FilterPage implements OnInit {
 
-  constructor(private router: Router, private projectsService: ProjectsService,
-    private tagsService: TagsService, public alertController: AlertController) { }
+  constructor( private router: Router, private projectsService: ProjectsService,
+               private tagsService: TagsService, public alertController: AlertController,
+               private tasksService: TasksService) { }
+
   public allProjects: Project[] = [];
   public allTags: Tag[] = [];
+  public allTasks: Task[] = [];
 
   ngOnInit() {
     this.reloadAllProjects();
     this.reloadAllTags();
+    this.reloadAllTasks();
+  }
+
+  public reloadAllTasks() {
+      this.tasksService.getAllTasks().subscribe((tasks: Task[]) => {
+          this.allTasks = tasks;
+      })
   }
 
   public reloadAllProjects() {
@@ -134,5 +147,23 @@ export class FilterPage implements OnInit {
         this.router.navigateByUrl('/login');
       }
     )
+  }
+
+  countTasks(item, typ = 'project') {
+    let i = 0;
+    for(const task of this.allTasks) {
+      if(typ === 'project') {
+        if (task.project.id === item.id) {
+            i++;
+        }
+      } else if(typ === 'tag') {
+        for(const tag of task.tags) {
+            if (tag.id === item.id) {
+                i++;
+            }
+        }
+      }
+    }
+    return i;
   }
 }
