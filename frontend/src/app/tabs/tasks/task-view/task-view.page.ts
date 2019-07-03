@@ -21,7 +21,7 @@ export class TaskViewPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private tasksService: TasksService, private projectsService: ProjectsService) { }
 
   ngOnInit() {
-    this.taskId = this.activatedRoute.snapshot.paramMap.get('id-1');
+    this.taskId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(this.taskId)
     this.tasksService.getTaskById(this.taskId).subscribe((editTask: Task) => {
       this.editTask = editTask;
