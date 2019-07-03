@@ -97,7 +97,7 @@ export class TasksService {
   }
 
   public addNewTask(newTask: Task) {
-    return this.http.post(this.apiUrl + '/todo', newTask, { withCredentials: true });
+    return this.http.post(this.apiUrl + '/task', newTask, { withCredentials: true });
   }
 
   public updateTask(task: Task) {

@@ -60,4 +60,8 @@ export class ProjectsService {
   public getAllProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(this.apiUrl + '/projects', { withCredentials: true });
   }
+
+  public finByName(title: string): Observable<Project> {
+    return this.http.get<Project>(this.apiUrl + '/project/' + title, { withCredentials: true });
+  }
 }

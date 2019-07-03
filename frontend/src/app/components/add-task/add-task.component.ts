@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from '../../model/task'
+import { ProjectsService } from 'src/app/services/projects.service';
+import { Project } from 'src/app/model/project';
 
 // TODO: Component testen. Richtige Tasks nehmen statt dummy Daten
 
@@ -13,35 +15,33 @@ import { Task } from '../../model/task'
 })
 export class AddTaskComponent implements OnInit {
 
-  newTask: Task = 
+  inboxProject: Project;
+  newTask: Task =
     {
       id: null,
       title: "",
       description: "",
       dueDate: null,
       project: {
-        id: 1,
-        title: "Bonfire",
+        id: 0,
+        title: "",
         standard: false,
         user: "user"
       },
-      tags: [
-        {
-          id: 1,
-          title: "Finance",
-            user: "user"
-        }
-      ],
+      tags: [],
       done: false,
       user: "user"
-    } 
+    }
 
-  constructor(private router: Router, public alertController: AlertController, private taskservice: TasksService) { }
+  constructor(private router: Router, public alertController: AlertController,
+    private taskservice: TasksService, private projectsService: ProjectsService) { }
 
   ngOnInit() {
-    
+    this.projectsService.finByName("Inbox").subscribe((project: Project) => {
+      this.inboxProject = project;
+    });
   }
-  
+
 
   async addTask() {
     const alert = await this.alertController.create({
@@ -61,13 +61,14 @@ export class AddTaskComponent implements OnInit {
         }, {
           text: 'Hinzufügen',
           handler: (data) => {
-            console.log(data);
-            this.newTask.title = data;
-            this.taskservice.addNewTask(this.newTask)
+            this.newTask.title = data.title;
+            this.newTask.project = this.inboxProject;
+            this.taskservice.addNewTask(this.newTask).subscribe((data) => { }
+            )
           }
         }
       ]
-    });
+  });
     await alert.present();
   }
 
