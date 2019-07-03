@@ -36,29 +36,14 @@ public class ProjectEndpoint {
 
     @RequestMapping(path = "/api/project", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public ResponseEntity addProject(@RequestBody Project newProject, Principal principal) {
-        try {
-            projectController.addProject(newProject, principal.getName());
-            return ResponseEntity.status(HttpStatus.CREATED).body("Das Projekt wurde ihrem Benutzer erfolgreich hinzugefügt.");
-        } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
-        }
+    public void addProject(@RequestBody Project newProject, Principal principal) {
+        projectController.addProject(newProject, principal.getName());
     }
 
     @RequestMapping(path = "/api/project/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public ResponseEntity deleteProject(@PathVariable Long id, Principal principal) {
-
-        try {
-            boolean success = projectController.deleteProject(id, principal.getName());
-
-            if(success){
-                return ResponseEntity.status(HttpStatus.OK).body("Das Projekt wurde erfolgreich gelöscht.");
-            } else  {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Das Projekt existiert nicht oder Sie sind nicht der Eigner dieses Projekts.");
-            }
-        } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
-        }
+    public void deleteProject(@PathVariable Long id, Principal principal) {
+        projectController.deleteProject(id, principal.getName());
     }
+
 }

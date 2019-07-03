@@ -69,100 +69,53 @@ public class LeanToDo implements CommandLineRunner {
         u.getRoles().add(r);
         userRepository.save(u);
 
-        Project inboxProject = new Project();
-        inboxProject.setTitle("Inbox");
-        inboxProject.setUser("user");
-        inboxProject.setStandard(true);
-        inboxProject = projectRepository.save(inboxProject);
+        Project inbox = this.dummyProject("Inbox", "user", true);
+        Project archive = this.dummyProject("Archive", "user", true);
+        Project someday = this.dummyProject("Irgendwann", "user", true);
+        Project mond = this.dummyProject("Mond Landung", "user", false);
+        Project mb = this.dummyProject("Mobile Engineering", "user", false);
 
-        Project archiveProject = new Project();
-        archiveProject.setTitle("Archive");
-        archiveProject.setUser("user");
-        archiveProject.setStandard(true);
-        archiveProject = projectRepository.save(archiveProject);
+        Tag programming = this.dummyTag("Programmieren", "User");
+        Tag phone = this.dummyTag("Telefon", "User");
 
-        Project somewhenProject = new Project();
-        somewhenProject.setTitle("Irgendwann");
-        somewhenProject.setUser("user");
-        somewhenProject.setStandard(true);
-        somewhenProject = projectRepository.save(somewhenProject);
+        this.dummyTask("Ferien eintragen", "Ferien mitteilen und eintragen", "user", programming, mond, 1);
+        this.dummyTask("Auf den Mond fliegen", "Mittag essen organisieren", "user", programming, mond, 3);
+        this.dummyTask("Bestellung abschicken", "Neue Bestellung abschicken", "user", programming, archive, 4);
+        this.dummyTask("Finish This app", "Programming the GTD App", "user", phone, mb, 5);
+        this.dummyTask("Phone Call", "Programming the GTD App", "user", phone, mb, 10);
+        this.dummyTask("Programming", "Programming the GTD App", "user", phone, mond, 40);
+    }
 
-        Project peaceProject = new Project();
-        peaceProject.setTitle("Peace-Project");
-        peaceProject.setUser("user");
-        peaceProject = projectRepository.save(peaceProject);
+    private Project dummyProject(String title, String user, Boolean standard) {
+        Project project = new Project();
+        project.setTitle(title);
+        project.setUser(user);
+        project.setStandard(standard);
+        return projectRepository.save(project);
+    }
 
-        Project gtdProject = new Project();
-        gtdProject.setTitle("GTD-Project");
-        gtdProject.setUser("user");
-        gtdProject = projectRepository.save(gtdProject);
+    private Tag dummyTag(String title, String user) {
+        Tag tag = new Tag();
+        tag.setTitle(title);
+        tag.setUser(user);
+        return tagRepository.save(tag);
+    }
 
-        Tag tagOne = new Tag();
-        tagOne.setTitle("Programming");
-        tagOne.setUser("user");
-        tagOne = tagRepository.save(tagOne);
-
-        Tag tagTwo = new Tag();
-        tagTwo.setTitle("Phone Call");
-        tagTwo.setUser("user");
-        tagTwo = tagRepository.save(tagTwo);
-
-
+    private Task dummyTask(String title, String desc, String user, Tag tag, Project project, int day) {
         Date dt = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(dt);
         c.add(Calendar.DATE, 1);
 
-        Task taskOne = new Task();
-        taskOne.setTitle("Finish This app");
-        taskOne.setDescription("Programming the GTD App");
-        taskOne.setDueDate(c.getTime());
-        taskOne.setUser("user");
-        taskOne.addTag(tagOne);
-        taskOne.setProject(archiveProject);
-        taskRepository.save(taskOne);
-
-        c.add(Calendar.DATE, 3);
-
-        Task taskTwo = new Task();
-        taskTwo.setTitle("Reply to student");
-        taskTwo.setDescription("Reply to the monday meeting by Mail.");
-        taskTwo.setDueDate(c.getTime());
-        taskTwo.setUser("user");
-        taskTwo.addTag(tagTwo);
-        taskTwo.setProject(inboxProject);
-        taskRepository.save(taskTwo);
-
-        c.add(Calendar.DATE, 2);
-
-        Task taskThree = new Task();
-        taskThree.setTitle("Finishing Calendar");
-        taskThree.setDescription("Work until the calendar page works.");
-        taskThree.setDueDate(c.getTime());
-        taskThree.setUser("user");
-        taskThree.addTag(tagTwo);
-        taskThree.setProject(gtdProject);
-        taskRepository.save(taskThree);
-
-
-
         Task task = new Task();
-        task.setDescription("Zmittag esse im MC");
-        task.setUser("user");
-        task.addTag(tagTwo);
-        task.setProject(gtdProject);
+        task.setTitle(title);
+        task.setDescription(desc);
+        task.setUser(user);
+        task.addTag(tag);
+        task.setProject(project);
 
-        c.add(Calendar.DATE, 1);
+        c.add(Calendar.DATE, day);
         task.setDueDate(c.getTime());
-        task.setTitle("Zmittag");
-        taskRepository.save(task);
-
-        task.setDueDate(c.getTime());
-        task.setTitle("Bestellung abschicken");
-        taskRepository.save(task);
-
-        task.setDueDate(c.getTime());
-        task.setTitle("Geburtstag Omi");
-        taskRepository.save(task);
+        return taskRepository.save(task);
     }
 }
