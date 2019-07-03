@@ -90,19 +90,19 @@ export class TasksService {
   tasksLoaded = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
-  private apiUrl: string = 'http://localhost:8080';
+  private apiUrl: string = 'http://localhost:8080/api';
 
   public getAllTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl + '/api/tasks', { withCredentials: true });
+    return this.http.get<Task[]>(this.apiUrl + '/tasks', { withCredentials: true });
   }
 
   public addNewTask(newTask: Task) {
-    return this.http.post(this.apiUrl + '/api/todo', newTask, { withCredentials: true });
+    return this.http.post(this.apiUrl + '/todo', newTask, { withCredentials: true });
   }
 
   public updateTask(task: Task) {
     console.log("###");
     console.log(task);
-    return this.http.put(this.apiUrl + '/api/todo', task, { withCredentials: true });
+    return this.http.put(this.apiUrl + '/todo', task, { withCredentials: true });
   }
 }
