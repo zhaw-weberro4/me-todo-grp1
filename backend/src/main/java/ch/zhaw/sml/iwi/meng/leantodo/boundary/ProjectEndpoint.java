@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 
+import ch.zhaw.sml.iwi.meng.leantodo.controller.TaskController;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ public class ProjectEndpoint {
 
     @Autowired
     private ProjectController projectController;
+
 
     @RequestMapping(path = "/api/projects", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
@@ -40,6 +42,7 @@ public class ProjectEndpoint {
     @RequestMapping(path = "/api/project/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public ResponseEntity deleteProject(@PathVariable Long id, Principal principal) {
+
         try {
             boolean success = projectController.deleteProject(id, principal.getName());
 

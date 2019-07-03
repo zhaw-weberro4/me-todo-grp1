@@ -13,6 +13,9 @@ public interface TaskRepository extends JpaRepository<Task,Long> {
     public List<Task> findByUser(String user);
 
     @Query("SELECT t FROM Task as t WHERE t.project.id = ?1 AND t.user = ?2 AND t.done = false")
+    public List<Task> findByActiveProjectIdAndUser(Long id, String user);
+
+    @Query("SELECT t FROM Task as t WHERE t.project.id = ?1 AND t.user = ?2")
     public List<Task> findByProjectIdAndUser(Long id, String user);
 
     public List<Task> findByDone(boolean done);

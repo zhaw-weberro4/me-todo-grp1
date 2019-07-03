@@ -38,6 +38,11 @@ public class ProjectController {
             Project project = projectRepository.findById(id).get();
 
             if(project.getUser().equals(user)) {
+
+                List<Task> toDeleteTasks = taskRepository.findByProjectIdAndUser(id, user);
+
+                taskRepository.deleteAll(toDeleteTasks);
+
                 projectRepository.delete(project);
                 success = true;
             }

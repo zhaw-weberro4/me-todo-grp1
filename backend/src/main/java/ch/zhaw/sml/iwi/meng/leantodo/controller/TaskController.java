@@ -20,8 +20,12 @@ public class TaskController {
         return taskRepository.findByUser(user);
     }
 
-    public List<Task> getActiveTaskByProject(Long id, String user) {
+    public List<Task> getTaskByProject(Long id, String user) {
         return taskRepository.findByProjectIdAndUser(id, user);
+    }
+
+    public List<Task> getActiveTaskByProject(Long id, String user) {
+        return taskRepository.findByActiveProjectIdAndUser(id, user);
     }
 
     public List<Task> getArchieve(String user){
