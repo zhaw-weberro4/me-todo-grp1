@@ -45,6 +45,7 @@ export class TaskViewPage implements OnInit {
   }
 
   overrideTask() {
+    
     // TODO Task mit Forulardaten abfüllen und in DB schreiben
   }
 
