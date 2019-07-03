@@ -67,6 +67,9 @@ export class CalendarPage implements OnInit {
         );
     }
 
+    ngOnInit(): void {
+    }
+
     /**
      * Change month/week/day next
      */
