@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.ListIterator;
 
 @Component
 public class TagController {
@@ -12,6 +13,9 @@ public class TagController {
 
     @Autowired
     private TagRepository tagRepository;
+
+    @Autowired
+    private TaskController taskController;
 
 
 
@@ -25,7 +29,7 @@ public class TagController {
         tagRepository.save(newTag);
     }
 
-    public boolean deleteTag(Long id, String user) {
+    public void deleteTag(Long id, String user) {
 
         boolean success = false;
 
@@ -33,11 +37,29 @@ public class TagController {
             Tag tag = tagRepository.findById(id).get();
 
             if(tag.getUser().equals(user)) {
+
+                List<Task> tasks = taskController.getTasksByTag(id);
+
+                for(Task task : tasks) {
+                    ListIterator<Tag> iterator = task.getTags().listIterator();
+
+                    while(iterator.hasNext()) {
+                        if(iterator.next().getId().equals(id)) {
+                            iterator.remove();
+                        }
+                    }
+                }
+
                 tagRepository.delete(tag);
-                success = true;
+
             }
         }
-        return success;
+
+
+
+
+
+
     }
     
 }

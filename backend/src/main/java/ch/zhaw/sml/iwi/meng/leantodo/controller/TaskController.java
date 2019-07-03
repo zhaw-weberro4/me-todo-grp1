@@ -20,6 +20,14 @@ public class TaskController {
         return taskRepository.findByUser(user);
     }
 
+    public Task getTaskById(Long id) throws Exception {
+        if(taskRepository.findById(id).isPresent()) {
+            return taskRepository.findById(id).get();
+        } else {
+            throw new IllegalArgumentException("Task with id " + id + " not found!");
+        }
+    }
+
     public List<Task> getTaskByProject(Long id, String user) {
         return taskRepository.findByProjectIdAndUser(id, user);
     }
@@ -75,6 +83,10 @@ public class TaskController {
 
     public List<Task> getTaskTimeInterval(Date startDate, Date endDate, String user) {
         return taskRepository.findByTimeInterval(startDate, endDate, user);
+    }
+
+    public List<Task> getTasksByTag(Long id) {
+        return taskRepository.findTasksByTag(id);
     }
     
 }

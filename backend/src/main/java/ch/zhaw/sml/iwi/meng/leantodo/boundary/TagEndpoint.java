@@ -3,6 +3,7 @@ package ch.zhaw.sml.iwi.meng.leantodo.boundary;
 
 import ch.zhaw.sml.iwi.meng.leantodo.controller.TagController;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Tag;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,6 @@ public class TagEndpoint {
     @RequestMapping(path = "/api/tag/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public void deleteTag(@PathVariable Long id, Principal principal) {
-            boolean success = tagController.deleteTag(id, principal.getName());
+        tagController.deleteTag(id, principal.getName());
     }
 }

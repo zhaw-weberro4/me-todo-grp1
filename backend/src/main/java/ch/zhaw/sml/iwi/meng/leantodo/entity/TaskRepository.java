@@ -24,5 +24,7 @@ public interface TaskRepository extends JpaRepository<Task,Long> {
 
     @Query("SELECT t FROM Task as t WHERE t.dueDate >= :startDate AND t.dueDate <= :endDate AND t.user = :user")
     public List<Task> findByTimeInterval(@Param("startDate") Date startDate, @Param("endDate") Date endDate, @Param("user") String user);
-    
+
+    @Query("SELECT t FROM Task t JOIN t.tags s WHERE s.id = :id ")
+    public List<Task> findTasksByTag(Long id);
 }
