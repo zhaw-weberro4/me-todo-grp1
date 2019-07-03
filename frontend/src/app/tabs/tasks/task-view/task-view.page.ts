@@ -25,7 +25,14 @@ export class TaskViewPage implements OnInit {
   overrideTask() {
     // TODO Task mit Forulardaten abfüllen und in DB schreiben
   }
- 
+
+  goBack() {
+    // TODO eine Forumlarebene zurück
+  }
+  
+  changeTagState() {
+    //TODO Tag Status ändern
+  }
   
 
 }
