@@ -29,7 +29,10 @@ export class TaskViewPage implements OnInit {
   goBack() {
     // TODO eine Forumlarebene zurück
   }
- 
+  
+  changeTagState() {
+    //TODO Tag Status ändern
+  }
   
 
 }
