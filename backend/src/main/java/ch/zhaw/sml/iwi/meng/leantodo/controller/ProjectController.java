@@ -34,24 +34,17 @@ public class ProjectController {
         projectRepository.save(newProject);
     }
 
-    public boolean deleteProject(Long id, String user) {
-
-        boolean success = false;
+    public void deleteProject(Long id, String user) {
 
         if(projectRepository.findById(id).isPresent()) {
             Project project = projectRepository.findById(id).get();
 
-            if(project.getUser().equals(user)) {
-
+            if(project.getUser().equals(user) && !project.isStandard()) {
                 List<Task> toDeleteTasks = taskRepository.findByProjectIdAndUser(id, user);
-
                 taskRepository.deleteAll(toDeleteTasks);
-
                 projectRepository.delete(project);
-                success = true;
             }
         }
-        return success;
     }
     
 }

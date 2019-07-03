@@ -64,13 +64,8 @@ public class TaskEndpoint {
 
     @RequestMapping(path = "/api/task", method = RequestMethod.DELETE)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public ResponseEntity deleteTask(@RequestBody Task task, Principal principal) {
-        boolean success = taskController.deleteTask(task, principal.getName());
-        if(success) {
-            return ResponseEntity.status(HttpStatus.OK).body("The task was successfully deleted.");
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("The current user is not allowed to delete this Task.");
-        }
+    public void deleteTask(@RequestBody Task task, Principal principal) {
+        taskController.deleteTask(task, principal.getName());
     }
 
 

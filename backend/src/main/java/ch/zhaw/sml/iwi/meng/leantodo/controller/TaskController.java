@@ -43,6 +43,8 @@ public class TaskController {
     public void addTask(Task newTask, String user) {
         newTask.setUser(user);
         newTask.setId(null);
+        newTask.setDueDate(null);
+        newTask.setDone(false);
         taskRepository.save(newTask);
     }
 

@@ -40,7 +40,7 @@ public class Project {
         this.title = title;
     }
 
-    public Boolean getStandard() {
+    public Boolean isStandard() {
         return standard;
     }
 
