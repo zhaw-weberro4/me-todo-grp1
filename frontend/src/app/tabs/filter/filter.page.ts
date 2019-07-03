@@ -24,7 +24,9 @@ export class FilterPage implements OnInit {
   }
 
   public reloadAllProjects() {
-    this.allProjects = this.projectsService.allProjects;
+    this.projectsService.getAllProjects().subscribe((projects: Project[])=>{
+      this.allProjects = projects;
+    });
   }
 
   public reloadAllTags() {

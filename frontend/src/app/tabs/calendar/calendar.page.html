@@ -53,13 +53,13 @@
 <ng-template #template let-showEventDetail="showEventDetail" let-selectedDate="selectedDate" let-noEventsLabel="noEventsLabel">
 
   <!--<app-tasks></app-tasks>-->
-
-  <ion-item *ngFor="let event of selectedDate?.events">
-                        <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">{{event.startTime|date: 'HH:mm'}}
-                          -
-                          {{event.endTime|date: 'HH:mm'}}
-                        </span>
-    <span *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">{{allDayLabel}}</span>
-    <span class="event-detail">  |  {{event.title}}</span>
-  </ion-item>
+  <div padding>
+    <ion-item *ngFor="let event of selectedDate?.events">
+      <span *ngIf="!event.allDay" class="monthview-eventdetail-timecolumn">
+        {{event.startTime|date: 'HH:mm'}} - {{event.endTime|date: 'HH:mm'}}
+      </span>
+      <span *ngIf="event.allDay" class="monthview-eventdetail-timecolumn">{{allDayLabel}}</span>
+      <span class="event-detail">  |  {{event.title}}</span>
+    </ion-item>
+  </div>
 </ng-template>

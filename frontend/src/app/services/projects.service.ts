@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../model/project'
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
 
+  allProjects: Project[] = [];
+
+  
+
+  /* 
   allProjects: Project[] = [
     {
       id: 1,
@@ -43,7 +51,13 @@ export class ProjectsService {
       standard: false,
       user: "user"
     }
-  ]
+  ] */
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  private apiUrl: String = "http://localhost:8080/api"
+
+  public getAllProjects(): Observable<Project[]> {
+    return this.http.get<Project[]>(this.apiUrl + '/projects', { withCredentials: true });
+  }
 }
