@@ -19,7 +19,7 @@ export class TaskViewPage implements OnInit {
 
   ngOnInit() {
     this.taskId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.editTask = this.tasksService.allTasks[this.taskId]
+    this.editTask = this.tasksService.getAllTasks()[this.taskId]
   }
 
   overrideTask() {
