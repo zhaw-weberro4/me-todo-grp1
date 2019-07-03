@@ -25,9 +25,12 @@ export class TasksPage implements OnInit {
     if (this.activatedRoute.snapshot.params["projectId"] != null) {
       const projectId: number = this.activatedRoute.snapshot.params["projectId"];
       console.log(projectId);
-      this.projectService.findById(projectId).subscribe((data) => {
-        console.log(data);
-        this.pageTitle = this.pageTitle + " " + data.title;
+      this.projectService.findById(projectId).subscribe((project) => {
+        if (project.standard){
+          this.pageTitle = project.title;
+        } else {
+          this.pageTitle = this.pageTitle + " " + project.title;
+        }
       }, (error) => {
         console.log(error);
       })

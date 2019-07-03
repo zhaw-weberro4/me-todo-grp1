@@ -170,4 +170,22 @@ export class FilterPage implements OnInit {
   onOpenProject(projectId: number){
     this.router.navigate(['/tabs/tasks/project/', projectId]);
   }
+
+  onOpenTimeQuery(startDate: Date, endDate: Date) {
+
+    endDate.setDate(endDate.getDate() + 7);
+
+    const startDateString = startDate.toISOString();
+    const endDateString = endDate.toISOString();
+    const link = "/tabs/tasks/time/" + startDateString + "/" + endDateString;
+     this.router.navigate(['/tabs/tasks/time/', startDateString, endDateString]);
+  }
+
+  weekDate(weekPoint: String): Date {
+    if (weekPoint === "start") {
+      return new Date();
+    } else {
+      return new Date();
+    }
+  }
 }

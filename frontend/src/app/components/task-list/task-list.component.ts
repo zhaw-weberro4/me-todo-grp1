@@ -25,8 +25,10 @@ export class TaskListComponent implements OnInit, OnChanges {
         this.reloadTaskByProject(projectId);
 
     } else if (this.activatedRoute.snapshot.params["startDate"] != null) {
-        console.log(this.activatedRoute.snapshot.params["stardDate"]);
+        console.log(this.activatedRoute.snapshot.params["startDate"]);
         console.log(this.activatedRoute.snapshot.params["endDate"]);
+        const startDate: Date = new Date(this.activatedRoute.snapshot.params["startDate"]);
+        const todayDate: Date = new Date(this.activatedRoute.snapshot.params["endDate"]);
     } else if (this.activatedRoute.snapshot.params["todayDate"] != null) {
 
         const todayDate: Date = new Date(this.activatedRoute.snapshot.params["todayDate"]);
@@ -68,6 +70,10 @@ export class TaskListComponent implements OnInit, OnChanges {
       }, (error) => {
           console.log(error);
       });
+  }
+
+  public reloadTaskByTimeInterval(startDate, endDate) {
+
   }
 
   async finish(task: Task) {

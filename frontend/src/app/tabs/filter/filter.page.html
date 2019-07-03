@@ -15,6 +15,12 @@
           <ion-badge color="danger">{{countTasks(project, 'project')}}</ion-badge>
         </ion-item>
       </ng-container>
+      <ng-container>
+        <ion-item (click)="onOpenTimeQuery(weekDate('start'), weekDate('end'))">
+          <ion-label>This Week</ion-label>
+          <ion-badge color="danger">5</ion-badge>
+        </ion-item>
+      </ng-container>
     </ion-item-group>
 
     <!-- Gruppe mit allen Projekten -->
