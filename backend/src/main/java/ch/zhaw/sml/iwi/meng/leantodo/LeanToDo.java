@@ -84,6 +84,15 @@ public class LeanToDo implements CommandLineRunner {
         this.dummyTask("Finish This app", "Programming the GTD App", "user", phone, mb, 5);
         this.dummyTask("Phone Call", "Programming the GTD App", "user", phone, mb, 10);
         this.dummyTask("Programming", "Programming the GTD App", "user", phone, mond, 40);
+
+        Task taskOne = new Task();
+        taskOne.setTitle("Finish This app");
+        taskOne.setDescription("Programming the GTD App");
+        taskOne.setDueDate(new Date());
+        taskOne.setUser("user");
+        taskOne.addTag(programming);
+        taskOne.setProject(mond);
+        taskRepository.save(taskOne);
     }
 
     private Project dummyProject(String title, String user, Boolean standard) {
@@ -118,4 +127,6 @@ public class LeanToDo implements CommandLineRunner {
         task.setDueDate(c.getTime());
         return taskRepository.save(task);
     }
+
+
 }

@@ -10,7 +10,7 @@
     <!-- Gruppe mit Standard-Projekten -->
     <ion-item-group>
       <ng-container *ngFor="let project of allProjects">
-        <ion-item *ngIf="project.standard">
+        <ion-item (click)="onOpenProject(project.id)" *ngIf="project.standard">
           <ion-label>{{project.title}}</ion-label>
           <ion-badge color="danger">{{countTasks(project, 'project')}}</ion-badge>
         </ion-item>
@@ -27,7 +27,7 @@
         <ion-item-options side="start">
           <ion-item-option (click)="deleteProject(project)" color="danger">Delete</ion-item-option>
         </ion-item-options>
-        <ion-item *ngIf="!project.standard">
+        <ion-item (click)="onOpenProject(project.id)" *ngIf="!project.standard">
           <ion-label>{{project.title}}</ion-label>
           <ion-badge color="primary">{{countTasks(project, 'project')}}</ion-badge>
         </ion-item>

@@ -26,7 +26,28 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'today',
+        path: 'today/:todayDate',
+        data: {pageTitle: "Tasks for Today"},
+        children: [
+          {
+            path: '',
+            loadChildren: './tasks/tasks.module#TasksPageModule'
+          }
+        ]
+      },
+      {
+        path: 'tasks/project/:projectId',
+        data: {pageTitle: "Tasks for Project"},
+        children: [
+          {
+            path: '',
+            loadChildren: './tasks/tasks.module#TasksPageModule'
+          }
+        ]
+      },
+      {
+        path: 'tasks/time/:startDate/:endDate',
+        data: {pageTitle: "Time filtered Tasks"},
         children: [
           {
             path: '',

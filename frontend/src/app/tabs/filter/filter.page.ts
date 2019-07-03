@@ -166,4 +166,8 @@ export class FilterPage implements OnInit {
     }
     return i;
   }
+
+  onOpenProject(projectId: number){
+    this.router.navigate(['/tabs/tasks/project/', projectId]);
+  }
 }

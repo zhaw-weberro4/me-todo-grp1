@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from 'src/app/model/task';
 import {take} from 'rxjs/operators';
@@ -11,12 +11,16 @@ import {take} from 'rxjs/operators';
 })
 export class TasksPage implements OnInit {
 
-  constructor(private router: Router, private tasksService: TasksService) { }
+  constructor(private router: Router, private tasksService: TasksService, private activatedRoute: ActivatedRoute) { }
 
   taskId: number = 1;
   public allTasks: Task[] = [];
   public newTask: Task = new Task();
+  public pageTitle: String = "";
+
   ngOnInit() {
+    this.pageTitle = this.activatedRoute.snapshot.data["pageTitle"];
+
     this.reloadAllTasks();
   }
 

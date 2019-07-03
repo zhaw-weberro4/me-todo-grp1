@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {TasksService} from "../../services/tasks.service";
 import {Task} from "../../model/task";
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -9,17 +10,33 @@ import {Task} from "../../model/task";
 })
 export class TaskListComponent implements OnInit, OnChanges {
 
-  constructor(private tasksService: TasksService) { }
+  constructor(private tasksService: TasksService, private activatedRoute: ActivatedRoute) { }
 
   @Input("selectedDate") selectedDate: Date;
 
   public allTasks: Task[] = [];
 
   ngOnInit() {
-    if(!this.selectedDate) {
-        this.reloadAllTasks();
-    } else {
-      this.reloadTasksByDueDate(this.selectedDate);
+
+
+    if (this.activatedRoute.snapshot.params["projectId"] != null) {
+        console.log(this.activatedRoute.snapshot.params["projectId"])
+    } else if (this.activatedRoute.snapshot.params["startDate"] != null) {
+        console.log(this.activatedRoute.snapshot.params["stardDate"]);
+        console.log(this.activatedRoute.snapshot.params["endDate"]);
+    } else if (this.activatedRoute.snapshot.params["todayDate"] != null) {
+
+        const todayDate: Date = new Date(this.activatedRoute.snapshot.params["todayDate"]);
+
+        this.tasksService.getTaskByDueDate(todayDate).subscribe(
+            (data) => {
+                this.allTasks = data;
+            }, (err) => {
+                console.log(err);
+            }
+        );
+    } else if (this.selectedDate) {
+        this.reloadTasksByDueDate(this.selectedDate);
     }
   }
 
