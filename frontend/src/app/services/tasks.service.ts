@@ -27,4 +27,8 @@ export class TasksService {
     console.log(task);
     return this.http.put(this.apiUrl + '/todo', task, { withCredentials: true });
   }
+
+  public getTaskById(id: number): Observable<Task> {
+    return this.http.get<Task>(this.apiUrl + '/taskId/' + id, { withCredentials: true });
+  }
 }
