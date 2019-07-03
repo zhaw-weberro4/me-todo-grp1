@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Task bearbeiten</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
  
@@ -29,12 +32,13 @@
   <br>
   <ion-item>
     <ion-label>Projekt</ion-label>
-    <ion-select placeholder="{{this.editTask.project.title}}" (click)="changeProject(project)">
-      <ion-select-option value="f">Female</ion-select-option>
-      <ion-select-option value="m">Male</ion-select-option>
+    <ion-select>
+      <ion-select-option *ngFor="let project of allProjects" value={{project.id}}>{{project.title}}</ion-select-option>
     </ion-select>
   </ion-item>
   <br>
   <ion-button (click)='overrideTask()'>Fertig</ion-button>
-  <ion-button (click)='goBack()'>Zurück</ion-button>
+
 </ion-content>
+
+<!-- placeholder="{{this.editTask.project.title}}" -->

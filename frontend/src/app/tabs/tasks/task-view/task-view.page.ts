@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from 'src/app/model/task';
-import { Observable } from 'rxjs';
+import { ProjectsService } from 'src/app/services/projects.service';
+import { Project } from 'src/app/model/project';
+
+
 
 @Component({
   selector: 'app-task-view',
@@ -12,14 +15,20 @@ import { Observable } from 'rxjs';
 export class TaskViewPage implements OnInit {
 
   taskId = null;
-  public allTasks: Task[] = [];
   public editTask: Task;
+  public allProjects: Project [];
 
-  constructor(private activatedRoute: ActivatedRoute, private tasksService: TasksService) { }
+  constructor(private activatedRoute: ActivatedRoute, private tasksService: TasksService, private projectsService: ProjectsService) { }
 
   ngOnInit() {
     this.taskId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.editTask = this.tasksService.getAllTasks()[this.taskId]
+    this.tasksService.getTaskById(this.taskId).subscribe((editTask: Task) => {
+      this.editTask = editTask;
+    })
+
+    this.projectsService.getAllProjects().subscribe((projects: Project[]) => {
+      this.allProjects = projects;
+    })
   }
 
   overrideTask() {
@@ -34,5 +43,6 @@ export class TaskViewPage implements OnInit {
     //TODO Tag Status ändern
   }
   
+
 
 }
