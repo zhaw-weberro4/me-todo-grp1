@@ -28,33 +28,15 @@ public class TagEndpoint {
 
     @RequestMapping(path = "/api/tag", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public ResponseEntity addTag(@RequestBody Tag newTag, Principal principal) {
-
-        System.out.println(newTag.getTitle());
-
-        try {
-            tagController.addTag(newTag, principal.getName());
-            return ResponseEntity.status(HttpStatus.CREATED).body("The tag was successfully added to your profile");
-        } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
-        }
+    public void addTag(@RequestBody Tag newTag, Principal principal) {
+        tagController.addTag(newTag, principal.getName());
     }
 
 
 
     @RequestMapping(path = "/api/tag/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public ResponseEntity deleteTag(@PathVariable Long id, Principal principal) {
-        try {
+    public void deleteTag(@PathVariable Long id, Principal principal) {
             boolean success = tagController.deleteTag(id, principal.getName());
-
-            if(success){
-                return ResponseEntity.status(HttpStatus.OK).body("The tag was successfully deleted");
-            } else  {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Either the tag doesn't exists or you aren't the owner of the tag.");
-            }
-        } catch(Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
-        }
     }
 }
