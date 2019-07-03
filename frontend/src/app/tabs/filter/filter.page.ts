@@ -56,8 +56,18 @@ export class FilterPage implements OnInit {
         }, {
           text: 'Hinzufügen',
           handler: (data) => {
-            console.log(data);
-            // Todo: Projekt in DB speichern
+            if (data.title != null && data.title != "") {
+              let newProject = new Project(0, data.title, false, "user");
+              this.projectsService.addNewProject(newProject).subscribe(
+                data => {
+                  console.log("Successfully added new project.");
+                  this.reloadAllProjects();
+                }, err => {
+                  console.log(err);
+                  this.router.navigateByUrl('/login');
+                }
+              );
+            }
           }
         }
       ]
@@ -83,7 +93,6 @@ export class FilterPage implements OnInit {
         }, {
           text: 'Hinzufügen',
           handler: (data) => {
-            console.log(data.title);
             if (data.title != null && data.title != "") {
               let newTag = new Tag(0, data.title, "user");
               this.tagsService.addNewTag(newTag).subscribe(
@@ -104,8 +113,15 @@ export class FilterPage implements OnInit {
   }
 
   deleteProject(project: Project) {
-    alert("I will delete the project " + project.title);
-    // TODO delete project
+    this.projectsService.deleteProject(project).subscribe(
+      data => {
+        console.log("Successfully delete project.");
+        this.reloadAllProjects();
+      }, err => {
+        console.log(err);
+        this.router.navigateByUrl('/login');
+      }
+    )
   }
 
   deleteTag(tag: Tag) {
