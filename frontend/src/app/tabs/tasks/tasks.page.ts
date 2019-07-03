@@ -13,6 +13,7 @@ export class TasksPage implements OnInit {
 
   constructor(private router: Router, private tasksService: TasksService) { }
 
+  taskId: number = 1;
   public allTasks: Task[] = [];
   public newTask: Task = new Task();
   ngOnInit() {

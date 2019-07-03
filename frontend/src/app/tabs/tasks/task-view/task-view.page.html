@@ -6,17 +6,17 @@
  
 <ion-content>
   <ion-item>
-    <ion-label position="stacked">{{this.editTask.title}}</ion-label>
-    <ion-input></ion-input>
+    <ion-label position="stacked">Titel</ion-label>
+    <ion-input>{{this.editTask.title}}</ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Beschreibung</ion-label>
-    <ion-input></ion-input>
+    <ion-input>{{this.editTask.description}}</ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Fälligkeitsdatum</ion-label>
-    <ion-datetime displayFormat="DD MM YY" placeholder="Select Date"></ion-datetime>
+    <ion-datetime displayFormat="DD MM YY" placeholder="Select Date">{{this.editTask.dueDate}}</ion-datetime>
   </ion-item>
   <ion-list-header>Tags</ion-list-header>
   <ion-chip>
