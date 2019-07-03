@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { CalendarPage } from './calendar.page';
 
 import { NgCalendarModule  } from 'ionic2-calendar';
+import {ComponentsModule} from "../../components/components.module";
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     RouterModule.forChild(routes),
     NgCalendarModule
   ],

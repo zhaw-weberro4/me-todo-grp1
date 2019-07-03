@@ -66,8 +66,4 @@ export class TasksPage implements OnInit {
   deleteTask(task: Task) {
     alert("I will delete the task " + task.title);
   }
-
-  onPutToSomewhen(task) {
-    alert("The status of " + task.title + " was changed to somewhen");
-  }
 }

@@ -78,7 +78,7 @@ public class LeanToDo implements CommandLineRunner {
         Tag programming = this.dummyTag("Programmieren", "user");
         Tag phone = this.dummyTag("Telefon", "user");
 
-        this.dummyTask("Ferien eintragen", "Ferien mitteilen und eintragen", "user", programming, mond, 1);
+        this.dummyTask("Ferien eintragen", "Ferien mitteilen und eintragen", "user", programming, mond, 0);
         this.dummyTask("Auf den Mond fliegen", "Mittag essen organisieren", "user", programming, mond, 3);
         this.dummyTask("Bestellung abschicken", "Neue Bestellung abschicken", "user", programming, archive, 4);
         this.dummyTask("Finish This app", "Programming the GTD App", "user", phone, mb, 5);

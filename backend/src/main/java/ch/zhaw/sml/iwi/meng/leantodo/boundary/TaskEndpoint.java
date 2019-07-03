@@ -40,7 +40,7 @@ public class TaskEndpoint {
 
     @RequestMapping(path = "/api/tasks/{dueDate}", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public List<Task> getTaskByDueDate(@PathVariable("dueDate") @DateTimeFormat(pattern = "dd.MM.yyyy") Date dueDate, Principal principal) {
+    public List<Task> getTaskByDueDate(@PathVariable("dueDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date dueDate, Principal principal) {
         return taskController.getTaskByDueDate(dueDate, principal.getName());
     }
 
