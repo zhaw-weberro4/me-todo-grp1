@@ -33,6 +33,7 @@ export class TasksService {
   }
 
   public getTaskByDueDate(date): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl + '/tasks/' + date, { withCredentials: true });
+    const dt = new Date(date);
+    return this.http.get<Task[]>(this.apiUrl + '/tasks/' + dt.toISOString(), { withCredentials: true });
   }
 }
