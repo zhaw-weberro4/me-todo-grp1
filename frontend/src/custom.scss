@@ -6,7 +6,6 @@ $outerPadding: 14px;
   Typography
 ------------------------------------------------------------------------------- */
 
-
 ion-title {
   font-weight: 300;
   text-transform: uppercase;
@@ -19,4 +18,13 @@ ion-title {
 
 ion-item-group {
   padding-bottom: 15px;
+}
+
+/** ---------------------------------------------------------------------------
+  Others
+------------------------------------------------------------------------------- */
+
+/* Button "Add Task" High Fix */
+.fab-vertical-bottom {
+    bottom: 70px;
 }
