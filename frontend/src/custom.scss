@@ -6,11 +6,10 @@ $outerPadding: 14px;
   Typography
 ------------------------------------------------------------------------------- */
 
-* {
-  font-family: "Open Sans";
-}
 
 ion-title {
+  font-weight: 300;
+  text-transform: uppercase;
   text-align: left;
   -webkit-padding-start: $outerPadding;
   padding-inline-start: $outerPadding;
