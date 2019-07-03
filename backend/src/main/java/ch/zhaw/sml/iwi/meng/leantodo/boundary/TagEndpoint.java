@@ -24,9 +24,14 @@ public class TagEndpoint {
         return tagController.listAllTags(principal.getName());
     }
 
+
+
     @RequestMapping(path = "/api/tag", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public ResponseEntity addTag(@RequestBody Tag newTag, Principal principal) {
+
+        System.out.println(newTag.getTitle());
+
         try {
             tagController.addTag(newTag, principal.getName());
             return ResponseEntity.status(HttpStatus.CREATED).body("The tag was successfully added to your profile");
@@ -34,6 +39,8 @@ public class TagEndpoint {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
         }
     }
+
+
 
     @RequestMapping(path = "/api/tag/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")

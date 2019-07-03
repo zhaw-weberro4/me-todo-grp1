@@ -71,12 +71,25 @@ public class LeanToDo implements CommandLineRunner {
         Project inboxProject = new Project();
         inboxProject.setTitle("Inbox");
         inboxProject.setUser("user");
+        inboxProject.setStandard(true);
         inboxProject = projectRepository.save(inboxProject);
 
         Project archiveProject = new Project();
         archiveProject.setTitle("Archive");
         archiveProject.setUser("user");
+        archiveProject.setStandard(true);
         archiveProject = projectRepository.save(archiveProject);
+
+        Project somewhenProject = new Project();
+        somewhenProject.setTitle("Irgendwann");
+        somewhenProject.setUser("user");
+        somewhenProject.setStandard(true);
+        somewhenProject = projectRepository.save(somewhenProject);
+
+        Project peaceProject = new Project();
+        peaceProject.setTitle("Peace-Project");
+        peaceProject.setUser("user");
+        peaceProject = projectRepository.save(peaceProject);
 
         Project gtdProject = new Project();
         gtdProject.setTitle("GTD-Project");
