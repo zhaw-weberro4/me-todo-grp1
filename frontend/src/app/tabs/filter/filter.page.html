@@ -7,25 +7,16 @@
 <ion-content padding="true">
   <!-- Liste mit Filtermöglichkeiten -->
   <ion-list>
-    <!-- Gruppe mit wichtigsten Filtern -->
+    <!-- Gruppe mit Standard-Projekten -->
     <ion-item-group>
-      <ion-item>
-        <ion-label>Inbox</ion-label>
-        <ion-badge color="danger">11</ion-badge>
-      </ion-item>
-      <ion-item>
-        <ion-label>Diese Woche</ion-label>
-        <ion-badge color="danger">11</ion-badge>
-      </ion-item>
-      <ion-item>
-        <ion-label>Irgendwann</ion-label>
-        <ion-badge color="dark">11</ion-badge>
-      </ion-item>
-      <ion-item>
-        <ion-label>Erledigt</ion-label>
-        <ion-badge color="success">11</ion-badge>
-      </ion-item>
+      <ng-container *ngFor="let project of allProjects">
+        <ion-item *ngIf="project.standard">
+          <ion-label>{{project.title}}</ion-label>
+          <ion-badge color="danger">{{countTasks(project, 'project')}}</ion-badge>
+        </ion-item>
+      </ng-container>
     </ion-item-group>
+
     <!-- Gruppe mit allen Projekten -->
     <ion-item-group>
       <ion-item-divider>
