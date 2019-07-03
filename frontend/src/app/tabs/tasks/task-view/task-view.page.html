@@ -2,11 +2,11 @@
   <ion-toolbar>
     <ion-title>Task bearbeiten</ion-title>
     <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
- 
+
 <ion-content padding=true>
   <ion-item>
     <ion-label position="stacked">Titel</ion-label>
@@ -24,10 +24,10 @@
   </ion-item>
   <br>
   <ion-item>
-  <ion-label>Tags</ion-label>
-  <ion-chip (click)="changeTagState(tags)" *ngFor="let tags of editTask.tags">
-    <ion-label>{{tags.title}}</ion-label>
-  </ion-chip>
+    <ion-label>Tags</ion-label>
+    <ion-select multiple=true [(ngModel)]="tagList">
+      <ion-select-option *ngFor="let tag of allTags" value="tag">{{tag.title}}</ion-select-option>
+    </ion-select>
   </ion-item>
   <br>
   <ion-item>
