@@ -34,6 +34,12 @@ public class ProjectEndpoint {
         return projectController.getProjectByTitle(projectTitle);
     }
 
+    @RequestMapping(path = "/api/project/id/{id}", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
+    public Project getProjectByName(@PathVariable("id") Long id) {
+        return projectController.getProjectById(id);
+    }
+
     @RequestMapping(path = "/api/project", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public void addProject(@RequestBody Project newProject, Principal principal) {

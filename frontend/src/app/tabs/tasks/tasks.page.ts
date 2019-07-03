@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from 'src/app/model/task';
 import {take} from 'rxjs/operators';
+import {ProjectsService} from '../../services/projects.service';
 
 @Component({
   selector: 'app-tasks',
@@ -11,7 +12,7 @@ import {take} from 'rxjs/operators';
 })
 export class TasksPage implements OnInit {
 
-  constructor(private router: Router, private tasksService: TasksService, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private tasksService: TasksService, private activatedRoute: ActivatedRoute, private projectService: ProjectsService) { }
 
   taskId: number = 1;
   public allTasks: Task[] = [];
@@ -21,8 +22,23 @@ export class TasksPage implements OnInit {
   ngOnInit() {
     this.pageTitle = this.activatedRoute.snapshot.data["pageTitle"];
 
-    this.reloadAllTasks();
+    if (this.activatedRoute.snapshot.params["projectId"] != null) {
+      const projectId: number = this.activatedRoute.snapshot.params["projectId"];
+      console.log(projectId);
+      this.projectService.findById(projectId).subscribe((data) => {
+        console.log(data);
+        this.pageTitle = this.pageTitle + " " + data.title;
+      }, (error) => {
+        console.log(error);
+      })
+    } else if (this.activatedRoute.snapshot.params["startDate"] != null) {
+
+    } else if (this.activatedRoute.snapshot.params["todayDate"] != null) {
+
+
+    }
   }
+
 
   async addTask() {
     if (this.newTask.title != null && this.newTask.title != "") {

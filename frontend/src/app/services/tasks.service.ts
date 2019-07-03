@@ -36,4 +36,8 @@ export class TasksService {
     const dt = new Date(date);
     return this.http.get<Task[]>(this.apiUrl + '/tasks/' + dt.toISOString(), { withCredentials: true });
   }
+
+  public getTaskByProject(id) {
+    return this.http.get<Task[]>(this.apiUrl + '/tasks/project/' + id, { withCredentials: true });
+  }
 }

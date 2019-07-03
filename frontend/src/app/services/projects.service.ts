@@ -61,6 +61,10 @@ export class ProjectsService {
     return this.http.get<Project[]>(this.apiUrl + '/projects', { withCredentials: true });
   }
 
+  public findById(id: number) {
+    return this.http.get<Project>(this.apiUrl + '/project/id/' + id, { withCredentials: true });
+  }
+
   public finByName(title: string): Observable<Project> {
     return this.http.get<Project>(this.apiUrl + '/project/' + title, { withCredentials: true });
   }

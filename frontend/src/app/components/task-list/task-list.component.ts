@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {TasksService} from "../../services/tasks.service";
 import {Task} from "../../model/task";
 import {ActivatedRoute, Router} from '@angular/router';
+import {ProjectsService} from '../../services/projects.service';
 
 @Component({
   selector: 'app-task-list',
@@ -10,7 +11,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class TaskListComponent implements OnInit, OnChanges {
 
-  constructor(private tasksService: TasksService, private activatedRoute: ActivatedRoute) { }
+  constructor(private tasksService: TasksService, private activatedRoute: ActivatedRoute, private projectService: ProjectsService) { }
 
   @Input("selectedDate") selectedDate: Date;
 
@@ -20,7 +21,9 @@ export class TaskListComponent implements OnInit, OnChanges {
 
 
     if (this.activatedRoute.snapshot.params["projectId"] != null) {
-        console.log(this.activatedRoute.snapshot.params["projectId"])
+        const projectId: number = this.activatedRoute.snapshot.params["projectId"];
+        this.reloadTaskByProject(projectId);
+
     } else if (this.activatedRoute.snapshot.params["startDate"] != null) {
         console.log(this.activatedRoute.snapshot.params["stardDate"]);
         console.log(this.activatedRoute.snapshot.params["endDate"]);
@@ -57,6 +60,14 @@ export class TaskListComponent implements OnInit, OnChanges {
               console.log(err);
           }
       );
+  }
+
+  public reloadTaskByProject(id) {
+      this.tasksService.getTaskByProject(id).subscribe((data) => {
+          this.allTasks = data;
+      }, (error) => {
+          console.log(error);
+      });
   }
 
   async finish(task: Task) {

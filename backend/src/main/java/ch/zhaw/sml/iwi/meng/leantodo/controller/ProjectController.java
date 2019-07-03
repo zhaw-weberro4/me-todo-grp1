@@ -28,6 +28,14 @@ public class ProjectController {
         return projectRepository.findByTitle(title);
     }
 
+    public Project getProjectById(Long id) {
+        if(projectRepository.findById(id).isPresent()){
+            return projectRepository.findById(id).get();
+        } else {
+            throw new IllegalArgumentException("No Project found with this Id.");
+        }
+    }
+
     public void addProject(Project newProject, String user) {
         newProject.setId(null);
         newProject.setUser(user);
@@ -46,5 +54,7 @@ public class ProjectController {
             }
         }
     }
+
+
     
 }
