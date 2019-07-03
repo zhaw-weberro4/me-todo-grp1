@@ -42,29 +42,26 @@ export class CalendarPage implements OnInit {
      * @param tasksService
      */
     constructor(private alertCtrl: AlertController, @Inject(LOCALE_ID) private locale: string, private tasksService: TasksService) {
-        this.eventSource = this.createRandomEvents();
+        // this.eventSource = this.createRandomEvents();
+        // console.log(this.eventSource);
 
-        console.log(this.eventSource);
-
-        this.tasksService.getAllTasks().subscribe(
-            data => {
-                const events = [];
-                for(const task of data) {
-                    const event = {
-                        title: task.title,
-                        desc: task.description,
-                        startTime: new Date(task.dueDate),
-                        endTime: new Date(task.dueDate),
-                        allDay: false
-                    };
-                    events.push(event);
-                }
-                console.log(events);
-                this.eventSource = events;
-            }, err => {
-                console.log(err);
+        this.tasksService.getAllTasks().subscribe((data) => {
+            const events = [];
+            for(const task of data) {
+                const event = {
+                    title: task.title,
+                    desc: task.description,
+                    startTime: new Date(task.dueDate),
+                    endTime: new Date(task.dueDate),
+                    allDay: false
+                };
+                events.push(event);
             }
-        );
+            console.log(events);
+            this.eventSource = events;
+        }, err => {
+            console.log(err);
+        });
     }
 
     ngOnInit(): void {

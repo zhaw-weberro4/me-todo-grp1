@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
 
+import java.util.Calendar;
 import java.util.Date;
 
 @SpringBootApplication
@@ -106,28 +107,38 @@ public class LeanToDo implements CommandLineRunner {
         tagTwo.setUser("user");
         tagTwo = tagRepository.save(tagTwo);
 
+
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, 1);
+
         Task taskOne = new Task();
         taskOne.setTitle("Finish This app");
         taskOne.setDescription("Programming the GTD App");
-        taskOne.setDueDate(new Date());
+        taskOne.setDueDate(c.getTime());
         taskOne.setUser("user");
         taskOne.addTag(tagOne);
         taskOne.setProject(archiveProject);
         taskRepository.save(taskOne);
 
+        c.add(Calendar.DATE, 3);
+
         Task taskTwo = new Task();
         taskTwo.setTitle("Reply to student");
         taskTwo.setDescription("Reply to the monday meeting by Mail.");
-        taskTwo.setDueDate(new Date());
+        taskTwo.setDueDate(c.getTime());
         taskTwo.setUser("user");
         taskTwo.addTag(tagTwo);
         taskTwo.setProject(inboxProject);
         taskRepository.save(taskTwo);
 
+        c.add(Calendar.DATE, 2);
+
         Task taskThree = new Task();
         taskThree.setTitle("Finishing Calendar");
         taskThree.setDescription("Work until the calendar page works.");
-        taskThree.setDueDate(new Date());
+        taskThree.setDueDate(c.getTime());
         taskThree.setUser("user");
         taskThree.addTag(tagTwo);
         taskThree.setProject(gtdProject);
@@ -135,9 +146,23 @@ public class LeanToDo implements CommandLineRunner {
 
 
 
+        Task task = new Task();
+        task.setDescription("Zmittag esse im MC");
+        task.setUser("user");
+        task.addTag(tagTwo);
+        task.setProject(gtdProject);
 
+        c.add(Calendar.DATE, 1);
+        task.setDueDate(c.getTime());
+        task.setTitle("Zmittag");
+        taskRepository.save(task);
 
+        task.setDueDate(c.getTime());
+        task.setTitle("Bestellung abschicken");
+        taskRepository.save(task);
 
-
+        task.setDueDate(c.getTime());
+        task.setTitle("Geburtstag Omi");
+        taskRepository.save(task);
     }
 }

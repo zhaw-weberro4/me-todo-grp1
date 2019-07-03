@@ -42,7 +42,7 @@ export class TasksPage implements OnInit {
 
   public updateTask(task: Task) {
     this.tasksService.updateTask(task).subscribe(
-      data => {
+        (data) => {
         console.log("Successfully updated todo.");
         this.reloadAllTasks();
       }, err => {
@@ -53,15 +53,14 @@ export class TasksPage implements OnInit {
   }
 
   public reloadAllTasks() {
-    this.allTasks = this.tasksService.allTasks;
-    // this.tasksService.getAllTasks().subscribe(
-    //   data => {
-    //     this.allTasks = data;
-    //   }, err => {
-    //     console.log(err);
-    //     this.router.navigateByUrl('/login');
-    //   }
-    // );
+    this.tasksService.getAllTasks().subscribe(
+      data => {
+        this.allTasks = data;
+      }, err => {
+        console.log(err);
+        this.router.navigateByUrl('/login');
+      }
+    );
   }
 
   deleteTask(task: Task) {
