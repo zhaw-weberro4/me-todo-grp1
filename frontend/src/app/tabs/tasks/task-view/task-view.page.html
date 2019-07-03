@@ -4,34 +4,37 @@
   </ion-toolbar>
 </ion-header>
  
-<ion-content>
+<ion-content padding=true>
   <ion-item>
     <ion-label position="stacked">Titel</ion-label>
-    <ion-input>{{this.editTask.title}}</ion-input>
+    <ion-input [(ngModel)]="this.editTask.title"></ion-input>
   </ion-item>
+  <br>
   <ion-item>
     <ion-label position="stacked">Beschreibung</ion-label>
-    <ion-input>{{this.editTask.description}}</ion-input>
+    <ion-input [(ngModel)]="this.editTask.description"></ion-input>
   </ion-item>
-
+  <br>
   <ion-item>
     <ion-label position="stacked">Fälligkeitsdatum</ion-label>
-    <ion-datetime displayFormat="DD MM YY" placeholder="Select Date">{{this.editTask.dueDate}}</ion-datetime>
+    <ion-datetime displayFormat="DD MM YY" placeholder="{{this.editTask.dueDate}}"></ion-datetime>
   </ion-item>
-  <ion-list-header>Tags</ion-list-header>
-  <ion-chip>
-    <ion-label>Default</ion-label>
+  <br>
+  <ion-item>
+  <ion-label>Tags</ion-label>
+  <ion-chip (click)="changeTagState(tags)" *ngFor="let tags of editTask.tags">
+    <ion-label>{{tags.title}}</ion-label>
   </ion-chip>
-  <ion-chip color="success">
-    <ion-label color="success">Default</ion-label>
-  </ion-chip>
-  
+  </ion-item>
+  <br>
   <ion-item>
     <ion-label>Projekt</ion-label>
-    <ion-select placeholder="Select One">
+    <ion-select placeholder="{{this.editTask.project.title}}" (click)="changeProject(project)">
       <ion-select-option value="f">Female</ion-select-option>
       <ion-select-option value="m">Male</ion-select-option>
     </ion-select>
   </ion-item>
+  <br>
   <ion-button (click)='overrideTask()'>Fertig</ion-button>
+  <ion-button (click)='goBack()'>Zurück</ion-button>
 </ion-content>
