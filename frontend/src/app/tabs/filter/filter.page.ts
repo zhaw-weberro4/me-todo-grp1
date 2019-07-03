@@ -13,7 +13,7 @@ import { TagsService } from 'src/app/services/tags.service';
 })
 export class FilterPage implements OnInit {
 
-  constructor(private router: Router, private projectsService: ProjectsService, 
+  constructor(private router: Router, private projectsService: ProjectsService,
     private tagsService: TagsService, public alertController: AlertController) { }
   public allProjects: Project[] = [];
   public allTags: Tag[] = [];
@@ -24,13 +24,18 @@ export class FilterPage implements OnInit {
   }
 
   public reloadAllProjects() {
-    this.projectsService.getAllProjects().subscribe((projects: Project[])=>{
+    this.projectsService.getAllProjects().subscribe((projects: Project[]) => {
+/*       for (const project of projects) {
+        console.log(project);
+      } */
       this.allProjects = projects;
     });
   }
 
   public reloadAllTags() {
-    this.allTags = this.tagsService.allTags;
+    this.tagsService.getAllTags().subscribe((tags: Tag[]) => {
+      this.allTags = tags;
+    });
   }
 
   async addProject() {
@@ -78,8 +83,19 @@ export class FilterPage implements OnInit {
         }, {
           text: 'Hinzufügen',
           handler: (data) => {
-            console.log(data);
-            // TODO: Tag in DB speichern
+            console.log(data.title);
+            if (data.title != null && data.title != "") {
+              let newTag = new Tag(0, data.title, "user");
+              this.tagsService.addNewTag(newTag).subscribe(
+                data => {
+                  console.log("Successfully added new tag.");
+                  this.reloadAllTags();
+                }, err => {
+                  console.log(err);
+                  this.router.navigateByUrl('/login');
+                }
+              );
+            }
           }
         }
       ]
@@ -93,8 +109,14 @@ export class FilterPage implements OnInit {
   }
 
   deleteTag(tag: Tag) {
-    alert("I will delete the Tag " + tag.title);
-    // TODO delete tag
+    this.tagsService.deleteTag(tag).subscribe(
+      data => {
+        console.log("Successfully delete tag.");
+        this.reloadAllTags();
+      }, err => {
+        console.log(err);
+        this.router.navigateByUrl('/login');
+      }
+    )
   }
-
 }
