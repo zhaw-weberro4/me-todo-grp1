@@ -15,16 +15,18 @@ import { Project } from 'src/app/model/project';
 export class TaskViewPage implements OnInit {
 
   taskId = null;
-  public editTask: Task;
+  public editTask: Task = new Task();
   public allProjects: Project [];
 
   constructor(private activatedRoute: ActivatedRoute, private tasksService: TasksService, private projectsService: ProjectsService) { }
 
   ngOnInit() {
-    this.taskId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.taskId = this.activatedRoute.snapshot.paramMap.get('id-1');
+    console.log(this.taskId)
     this.tasksService.getTaskById(this.taskId).subscribe((editTask: Task) => {
       this.editTask = editTask;
-    })
+      console.log(this.editTask)
+    }),
 
     this.projectsService.getAllProjects().subscribe((projects: Project[]) => {
       this.allProjects = projects;
