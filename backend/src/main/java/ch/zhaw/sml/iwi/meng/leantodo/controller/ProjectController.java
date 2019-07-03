@@ -24,6 +24,10 @@ public class ProjectController {
         return projectRepository.findByUser(loginName);
     }
 
+    public Project getProjectByTitle(String title) {
+        return projectRepository.findByTitle(title);
+    }
+
     public void addProject(Project newProject, String user) {
         newProject.setId(null);
         newProject.setUser(user);
