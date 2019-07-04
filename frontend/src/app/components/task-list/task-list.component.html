@@ -5,6 +5,9 @@
       <ion-item-option (click)="deleteTask(task)" color="danger">
         <ion-icon name="trash" size="large"></ion-icon>
       </ion-item-option>
+      <ion-item-option (click)="onPutToSomewhen(task)" color="warning">
+        <ion-icon name="alarm" size="large"></ion-icon>
+      </ion-item-option>
     </ion-item-options>
 
     <ion-item>
@@ -14,16 +17,17 @@
             {{task.title}}
           </ion-col>
           <ion-col>
-            <ion-button color="danger" *ngIf="!task.done" (click)="finish(task);$event.stopPropagation();">Fertig
-            </ion-button>
+            <ion-badge *ngIf="task.dueDate" color="danger">
+              {{task.dueDate}}
+            </ion-badge>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
 
     <ion-item-options side="end">
-      <ion-item-option (click)="onPutToSomewhen(task)" color="warning">
-        <ion-icon name="alarm" size="large"></ion-icon>
+      <ion-item-option (click)="finish(task);$event.stopPropagation();" *ngIf="!task.done" color="success">
+        <ion-icon name="checkmark" size="large"></ion-icon>
       </ion-item-option>
     </ion-item-options>
 
