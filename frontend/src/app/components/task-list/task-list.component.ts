@@ -18,11 +18,13 @@ export class TaskListComponent implements OnInit, OnChanges {
   public allTasks: Task[] = [];
 
   ngOnInit() {
-
-
     if (this.activatedRoute.snapshot.params["projectId"] != null) {
         const projectId: number = this.activatedRoute.snapshot.params["projectId"];
         this.reloadTaskByProject(projectId);
+
+    } else if (this.activatedRoute.snapshot.params["tagId"] != null) {
+        const tagId: number = this.activatedRoute.snapshot.params["tagId"];
+        this.reloadTaskByTag(tagId);
 
     } else if (this.activatedRoute.snapshot.params["startDate"] != null) {
         console.log(this.activatedRoute.snapshot.params["startDate"]);
@@ -66,6 +68,14 @@ export class TaskListComponent implements OnInit, OnChanges {
 
   public reloadTaskByProject(id) {
       this.tasksService.getTaskByProject(id).subscribe((data) => {
+          this.allTasks = data;
+      }, (error) => {
+          console.log(error);
+      });
+  }
+
+  public reloadTaskByTag(id) {
+      this.tasksService.getTaskByTag(id).subscribe((data) => {
           this.allTasks = data;
       }, (error) => {
           console.log(error);

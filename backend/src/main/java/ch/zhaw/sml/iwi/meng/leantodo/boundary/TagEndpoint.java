@@ -25,6 +25,11 @@ public class TagEndpoint {
         return tagController.listAllTags(principal.getName());
     }
 
+    @RequestMapping(path = "/api/tag/{id}", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
+    public Tag getProjectByName(@PathVariable("id") Long id) {
+        return tagController.getTagById(id);
+    }
 
 
     @RequestMapping(path = "/api/tag", method = RequestMethod.POST)
@@ -32,8 +37,6 @@ public class TagEndpoint {
     public void addTag(@RequestBody Tag newTag, Principal principal) {
         tagController.addTag(newTag, principal.getName());
     }
-
-
 
     @RequestMapping(path = "/api/tag/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")

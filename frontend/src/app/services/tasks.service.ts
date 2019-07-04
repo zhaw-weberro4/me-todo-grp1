@@ -25,7 +25,7 @@ export class TasksService {
   public updateTask(task: Task) {
     console.log("###");
     console.log(task);
-    return this.http.put(this.apiUrl + '/todo', task, { withCredentials: true });
+    return this.http.put(this.apiUrl + '/task', task, { withCredentials: true });
   }
 
   public getTaskById(id: number): Observable<Task> {
@@ -39,5 +39,9 @@ export class TasksService {
 
   public getTaskByProject(id) {
     return this.http.get<Task[]>(this.apiUrl + '/tasks/project/' + id, { withCredentials: true });
+  }
+
+  public getTaskByTag(id) {
+    return this.http.get<Task[]>(this.apiUrl + '/tasksByTag/' + id, { withCredentials: true });
   }
 }

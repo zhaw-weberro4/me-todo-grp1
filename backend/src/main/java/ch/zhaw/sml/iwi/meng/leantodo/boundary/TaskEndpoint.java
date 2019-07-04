@@ -50,6 +50,13 @@ public class TaskEndpoint {
         return taskController.getTaskTimeInterval(startDate, endDate, principal.getName());
     }
 
+    @RequestMapping(path = "/api/tasksByTag/{id}", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
+    public List<Task> getTaskByTag(@PathVariable("id") Long id, Principal principal) {
+        System.out.println("1");
+        return taskController.getTasksByTag(id, principal.getName());
+    }
+
     @RequestMapping(path = "/api/task", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public void addTask(@RequestBody Task newTask, Principal principal) {

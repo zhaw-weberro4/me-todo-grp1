@@ -87,8 +87,9 @@ public class TaskController {
         return taskRepository.findByTimeInterval(startDate, endDate, user);
     }
 
-    public List<Task> getTasksByTag(Long id) {
-        return taskRepository.findTasksByTag(id);
+    public List<Task> getTasksByTag(Long id, String user) {
+        System.out.println("2");
+        return taskRepository.findTasksByTag(id, user);
     }
     
 }

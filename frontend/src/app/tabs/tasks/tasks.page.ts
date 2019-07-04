@@ -4,6 +4,7 @@ import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from 'src/app/model/task';
 import {take} from 'rxjs/operators';
 import {ProjectsService} from '../../services/projects.service';
+import {TagsService} from "../../services/tags.service";
 
 @Component({
   selector: 'app-tasks',
@@ -12,7 +13,9 @@ import {ProjectsService} from '../../services/projects.service';
 })
 export class TasksPage implements OnInit {
 
-  constructor(private router: Router, private tasksService: TasksService, private activatedRoute: ActivatedRoute, private projectService: ProjectsService) { }
+  constructor(private router: Router, private tasksService: TasksService,
+              private activatedRoute: ActivatedRoute, private projectService: ProjectsService,
+              private tagService: TagsService) { }
 
   taskId: number = 1;
   public allTasks: Task[] = [];
@@ -24,7 +27,6 @@ export class TasksPage implements OnInit {
 
     if (this.activatedRoute.snapshot.params["projectId"] != null) {
       const projectId: number = this.activatedRoute.snapshot.params["projectId"];
-      console.log(projectId);
       this.projectService.findById(projectId).subscribe((project) => {
         if (project.standard){
           this.pageTitle = project.title;
@@ -34,10 +36,16 @@ export class TasksPage implements OnInit {
       }, (error) => {
         console.log(error);
       })
+    } else if (this.activatedRoute.snapshot.params["tagId"] != null) {
+        const tagId: number = this.activatedRoute.snapshot.params["tagId"];
+        this.tagService.findById(tagId).subscribe((tag) => {
+            this.pageTitle = this.pageTitle + " " + tag.title;
+        }, (error) => {
+            console.log(error);
+        })
     } else if (this.activatedRoute.snapshot.params["startDate"] != null) {
 
     } else if (this.activatedRoute.snapshot.params["todayDate"] != null) {
-
 
     }
   }

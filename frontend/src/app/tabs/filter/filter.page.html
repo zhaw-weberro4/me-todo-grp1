@@ -47,7 +47,7 @@
         <ion-label>Tags</ion-label>
         <ion-icon (click)="addTag()" name="add" slot="end"></ion-icon>
       </ion-item-divider>
-      <ion-item-sliding *ngFor="let tag of allTags">
+      <ion-item-sliding (click)="onOpenTag(tag.id)" *ngFor="let tag of allTags">
         <ion-item-options side="start">
           <ion-item-option (click)="deleteTag(tag)" color="danger">
             <ion-icon name="trash" size="large"></ion-icon>

@@ -46,6 +46,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'tasks/tag/:tagId',
+        data: {pageTitle: "Tasks for Tag"},
+        children: [
+          {
+            path: '',
+            loadChildren: './tasks/tasks.module#TasksPageModule'
+          }
+        ]
+      },
+      {
         path: 'tasks/time/:startDate/:endDate',
         data: {pageTitle: "Time filtered Tasks"},
         children: [

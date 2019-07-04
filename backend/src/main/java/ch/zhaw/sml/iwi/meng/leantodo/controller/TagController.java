@@ -30,16 +30,13 @@ public class TagController {
     }
 
     public void deleteTag(Long id, String user) {
-
         boolean success = false;
 
         if(tagRepository.findById(id).isPresent()) {
             Tag tag = tagRepository.findById(id).get();
 
             if(tag.getUser().equals(user)) {
-
-                List<Task> tasks = taskController.getTasksByTag(id);
-
+                List<Task> tasks = taskController.getTasksByTag(id, user);
                 for(Task task : tasks) {
                     ListIterator<Tag> iterator = task.getTags().listIterator();
 
@@ -49,17 +46,16 @@ public class TagController {
                         }
                     }
                 }
-
                 tagRepository.delete(tag);
-
             }
         }
-
-
-
-
-
-
     }
-    
+
+    public Tag getTagById(Long id) {
+        if(tagRepository.findById(id).isPresent()){
+            return tagRepository.findById(id).get();
+        } else {
+            throw new IllegalArgumentException("No Tag found with this Id.");
+        }
+    }
 }

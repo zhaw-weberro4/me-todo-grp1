@@ -38,9 +38,6 @@ export class FilterPage implements OnInit {
 
   public reloadAllProjects() {
     this.projectsService.getAllProjects().subscribe((projects: Project[]) => {
-/*       for (const project of projects) {
-        console.log(project);
-      } */
       this.allProjects = projects;
     });
   }
@@ -169,6 +166,10 @@ export class FilterPage implements OnInit {
 
   onOpenProject(projectId: number){
     this.router.navigate(['/tabs/tasks/project/', projectId]);
+  }
+
+  onOpenTag(tagId: number){
+    this.router.navigate(['/tabs/tasks/tag/', tagId]);
   }
 
   onOpenTimeQuery(startDate: Date, endDate: Date) {

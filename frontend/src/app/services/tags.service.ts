@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Tag } from '../model/tag'
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {Project} from "../model/project";
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,10 @@ export class TagsService {
 
   public getAllTags(): Observable<Tag[]> {
     return this.http.get<Tag[]>(this.apiUrl + '/tags', { withCredentials: true });
+  }
+
+  public findById(id: number) {
+      return this.http.get<Project>(this.apiUrl + '/tag/' + id, { withCredentials: true });
   }
 
   public addNewTag(newTag: Tag) {
