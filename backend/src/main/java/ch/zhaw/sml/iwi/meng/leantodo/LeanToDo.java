@@ -85,6 +85,7 @@ public class LeanToDo implements CommandLineRunner {
         this.dummyTask("Phone Call", "Programming the GTD App", "user", phone, mb, 10);
         this.dummyTask("Programming", "Programming the GTD App", "user", phone, mond, 40);
 
+        
         Task taskOne = new Task();
         taskOne.setTitle("Finish This app");
         taskOne.setDescription("Programming the GTD App");

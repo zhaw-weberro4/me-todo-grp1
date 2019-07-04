@@ -11,7 +11,8 @@ import {ProjectsService} from '../../services/projects.service';
 })
 export class TaskListComponent implements OnInit, OnChanges {
 
-  constructor(private tasksService: TasksService, private activatedRoute: ActivatedRoute, private projectService: ProjectsService, private router: Router) { }
+  constructor(private tasksService: TasksService, private activatedRoute: ActivatedRoute, 
+    private projectService: ProjectsService, private router: Router) { }
 
   @Input("selectedDate") selectedDate: Date;
 
@@ -88,16 +89,16 @@ export class TaskListComponent implements OnInit, OnChanges {
 
   async finish(task: Task) {
       task.done = true;
-      this.updateTask(task);
+      this.projectService.findById(3).subscribe((data) => {
+        task.project = data;
+        this.updateTask(task);
+      })
   }
 
   public updateTask(task: Task) {
       this.tasksService.updateTask(task).subscribe(
           (data) => {
-              console.log("Successfully updated todo.");
-              this.reloadAllTasks();
-          }, err => {
-              console.log(err);
+              this.reloadTaskByProject(task.project.id);
           }
       );
   }
