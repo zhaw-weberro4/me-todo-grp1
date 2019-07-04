@@ -49,6 +49,9 @@ export class TaskViewPage implements OnInit {
     for (const tagname of this.tagList) {
       for (const tag of this.allTags) {
         if (tagname === tag.title) {
+          if (this.editTask.tags.length === 0) {
+            this.editTask.tags.push(tag)
+          }
           for (const tasktag of this.editTask.tags) {
             if (tasktag.title === tag.title) {
               break
@@ -61,7 +64,7 @@ export class TaskViewPage implements OnInit {
     }
 
     for (const project of this.allProjects) {
-      if (project.title = this.project) {
+      if (project.title === this.project) {
         this.editTask.project = project
       }
     }
