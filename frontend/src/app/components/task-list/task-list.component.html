@@ -1,5 +1,5 @@
 <ion-list>
-  <ion-item-sliding *ngFor="let task of allTasks" routerLink="['/tabs/tasks/task-view', task.id-1]">
+  <ion-item-sliding *ngFor="let task of allTasks" (click)="onOpenTask(task.id)">
 
     <ion-item-options side="start">
       <ion-item-option (click)="deleteTask(task)" color="danger">
@@ -29,3 +29,5 @@
 
   </ion-item-sliding>
 </ion-list>
+
+<!-- routerLink="['/tabs/tasks/task-view', task.id-1]" -->
