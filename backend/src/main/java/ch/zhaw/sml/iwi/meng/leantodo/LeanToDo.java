@@ -123,6 +123,10 @@ public class LeanToDo implements CommandLineRunner {
         task.addTag(tag);
         task.setProject(project);
 
+        if(project.getTitle() == "Archive") {
+            task.setDone(true);
+        }
+
         c.add(Calendar.DATE, day);
         task.setDueDate(c.getTime());
         return taskRepository.save(task);
