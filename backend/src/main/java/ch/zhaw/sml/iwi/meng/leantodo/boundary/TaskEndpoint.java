@@ -71,7 +71,7 @@ public class TaskEndpoint {
 
     @RequestMapping(path = "/api/task/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void deleteTask(@RequestBody Long id, Principal principal) {
+    public void deleteTask(@PathVariable Long id, Principal principal) {
         taskController.deleteTask(id, principal.getName()); 
     }
 
