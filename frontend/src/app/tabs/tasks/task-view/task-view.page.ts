@@ -49,19 +49,14 @@ export class TaskViewPage implements OnInit {
     for (const tagname of this.tagList) {
       for (const tag of this.allTags) {
         if (tagname === tag.title) {
-          console.log(tagname + " " + tag.title)
-          if (this.editTask.tags === []) {
+          if (this.editTask.tags.length === 0) {
             this.editTask.tags.push(tag)
-              console.log(this.editTask.tags)
           }
           for (const tasktag of this.editTask.tags) {
-            console.log("schlaufe 3")
             if (tasktag.title === tag.title) {
-              console.log(tag)
               break
             } else {
               this.editTask.tags.push(tag)
-              console.log(this.editTask.tags)
             }
           }
         }
