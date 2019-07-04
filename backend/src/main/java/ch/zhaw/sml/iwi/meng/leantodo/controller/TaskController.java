@@ -66,17 +66,17 @@ public class TaskController {
         }
     }
 
-    public boolean deleteTask(Task task, String user){
+    public boolean deleteTask(Long id, String user){
 
-        Task orig = taskRepository.getOne(task.getId());
-        task.setUser(user);
+        Task orig = taskRepository.getOne(id);
+        // task.setUser(user);
 
-        if(!orig.getUser().equals(task.getUser())) {
+        if(!orig.getUser().equals(user)) {
             return false;
         }
 
-        taskRepository.deleteById(task.getId());
-        taskRepository.delete(task);
+        //taskRepository.deleteById(task.getId());
+        taskRepository.delete(orig);
         return true ;
     }
 

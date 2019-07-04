@@ -69,10 +69,10 @@ public class TaskEndpoint {
         taskController.updateTask(task, principal.getName());
     }
 
-    @RequestMapping(path = "/api/task", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/api/task/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void deleteTask(@RequestBody Task task, Principal principal) {
-        taskController.deleteTask(task, principal.getName());
+    public void deleteTask(@RequestBody Long id, Principal principal) {
+        taskController.deleteTask(id, principal.getName()); 
     }
 
 
