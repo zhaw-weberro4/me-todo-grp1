@@ -22,10 +22,10 @@ export class TasksService {
     return this.http.post(this.apiUrl + '/task', newTask, { withCredentials: true });
   }
 
-  public updateTask(task: Task) {
+  public updateTask(editTask: Task) {
     console.log("###");
-    console.log(task);
-    return this.http.put(this.apiUrl + '/task', task, { withCredentials: true });
+    console.log(editTask);
+    return this.http.put(this.apiUrl + '/edittask', editTask, { withCredentials: true });
   }
 
   public getTaskById(id: number): Observable<Task> {

@@ -11,7 +11,7 @@ import {ProjectsService} from '../../services/projects.service';
 })
 export class TaskListComponent implements OnInit, OnChanges {
 
-  constructor(private tasksService: TasksService, private activatedRoute: ActivatedRoute, private projectService: ProjectsService) { }
+  constructor(private tasksService: TasksService, private activatedRoute: ActivatedRoute, private projectService: ProjectsService, private router: Router) { }
 
   @Input("selectedDate") selectedDate: Date;
 
@@ -100,6 +100,10 @@ export class TaskListComponent implements OnInit, OnChanges {
               console.log(err);
           }
       );
+  }
+
+  onOpenTask(taskId: number){
+    this.router.navigate(['/tabs/tasks/task-view/', taskId]);
   }
 
   deleteTask(task: Task) {
