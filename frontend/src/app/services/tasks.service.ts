@@ -23,8 +23,6 @@ export class TasksService {
   }
 
   public updateTask(editTask: Task) {
-    console.log("###");
-    console.log(editTask);
     return this.http.put(this.apiUrl + '/task', editTask, { withCredentials: true });
   }
 
@@ -44,4 +42,12 @@ export class TasksService {
   public getTaskByTag(id) {
     return this.http.get<Task[]>(this.apiUrl + '/tasksByTag/' + id, { withCredentials: true });
   }
+
+  public deleteTask(deleteTask: Task) {
+    return this.http.put(this.apiUrl + '/task', deleteTask, { withCredentials: true });
+  }
 }
+
+ 
+
+

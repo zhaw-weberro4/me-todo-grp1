@@ -108,21 +108,31 @@ export class TaskListComponent implements OnInit, OnChanges {
 
   deleteTask(task: Task) {
       alert("Task " + task.title + " will be deleted");
+      const originTaskId: number = task.project.id;
+      this.tasksService.deleteTask(task).subscribe((data) => {
+        this.reloadTaskByProject(originTaskId);
+        console.log(originTaskId)
+    }, err => {
+        console.log(err);
+        }
+    );
+      
+  }
+
+  onPutToSomewhen(task: Task) {
+      alert("The status of " + task.title + " was changed to somewhen");
+      const originTaskId: number = task.project.id;
       const editTask = task;
-      editTask.project.id = 2;
-      editTask.project.title = "Archive";
+      editTask.project.id = 3;
+      editTask.project.title = "Irgendwann";
       this.tasksService.updateTask(editTask).subscribe((data) => {
-          this.reloadAllTasks();
+          this.reloadTaskByProject(originTaskId);
+          console.log(originTaskId)
       }, err => {
           console.log(err);
         
       }
     );
-      
-  }
-
-  onPutToSomewhen(task) {
-      alert("The status of " + task.title + " was changed to somewhen");
   }
 
   ngOnChanges() {
