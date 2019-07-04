@@ -44,7 +44,9 @@ export class TasksService {
   }
 
   public deleteTask(deleteTask: Task) {
-    return this.http.put(this.apiUrl + '/task', deleteTask, { withCredentials: true });
+    console.log(deleteTask.id)
+    return this.http.delete(this.apiUrl + '/task/' + deleteTask.id, { withCredentials: true });
+    
   }
 }
 
