@@ -29,7 +29,7 @@ export class TaskViewPage implements OnInit {
     this.taskId = this.activatedRoute.snapshot.paramMap.get('id');
     this.tasksService.getTaskById(this.taskId).subscribe((editTask: Task) => {
       this.editTask = editTask;
-      console.log(editTask.tags)
+      // console.log(editTask.tags)
       this.tagList = this.editTask.tags;
 
     }),
@@ -40,16 +40,11 @@ export class TaskViewPage implements OnInit {
 
     this.tagsService.getAllTags().subscribe((tags: Tag[]) => {
       this.allTags = tags;
-      console.log(this.allTags)
+      // console.log(this.allTags)
     })
   }
 
   overrideTask() {
-    
-    // TODO Task mit Forulardaten abfüllen und in DB schreiben
-  }
-
-  goBack() {
-    // TODO eine Forumlarebene zurück
+    this.tasksService.updateTask(this.editTask).subscribe((data) => { });
   }
 }
