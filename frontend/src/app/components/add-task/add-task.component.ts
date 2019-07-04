@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from '../../model/task'

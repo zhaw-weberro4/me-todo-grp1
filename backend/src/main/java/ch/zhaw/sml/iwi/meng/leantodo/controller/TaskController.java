@@ -76,7 +76,8 @@ public class TaskController {
         }
 
         taskRepository.deleteById(task.getId());
-        return true;
+        taskRepository.delete(task);
+        return true ;
     }
 
     public List<Task> getTaskByDueDate(Date dueDate, String user) {
