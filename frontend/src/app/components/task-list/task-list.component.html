@@ -1,5 +1,5 @@
 <ion-list>
-  <ion-item-sliding *ngFor="let task of allTasks" (click)="onOpenTask(task.id)">
+  <ion-item-sliding *ngFor="let task of allTasks">
 
     <ion-item-options side="start">
       <ion-item-option (click)="deleteTask(task)" color="danger">
@@ -10,7 +10,7 @@
       </ion-item-option>
     </ion-item-options>
 
-    <ion-item>
+    <ion-item (click)="onOpenTask(task.id)">
       <ion-grid>
         <ion-row>
           <ion-col>

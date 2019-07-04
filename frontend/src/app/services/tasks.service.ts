@@ -25,7 +25,7 @@ export class TasksService {
   public updateTask(editTask: Task) {
     console.log("###");
     console.log(editTask);
-    return this.http.put(this.apiUrl + '/edittask', editTask, { withCredentials: true });
+    return this.http.put(this.apiUrl + '/task', editTask, { withCredentials: true });
   }
 
   public getTaskById(id: number): Observable<Task> {

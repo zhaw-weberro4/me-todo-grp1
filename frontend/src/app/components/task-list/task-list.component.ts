@@ -107,7 +107,18 @@ export class TaskListComponent implements OnInit, OnChanges {
   }
 
   deleteTask(task: Task) {
-      alert("I will delete the task " + task.title);
+      alert("Task " + task.title + " will be deleted");
+      const editTask = task;
+      editTask.project.id = 2;
+      editTask.project.title = "Archive";
+      this.tasksService.updateTask(editTask).subscribe((data) => {
+          this.reloadAllTasks();
+      }, err => {
+          console.log(err);
+        
+      }
+    );
+      
   }
 
   onPutToSomewhen(task) {
