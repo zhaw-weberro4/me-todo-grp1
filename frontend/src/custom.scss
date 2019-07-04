@@ -53,6 +53,12 @@ ion-item-group {
     --ion-color-step-850: #dcdcdc;
     --ion-color-step-900: #e8e8e8;
     --ion-color-step-950: #f3f3f3;
+
+    /* Alertbox for adding project/tag fix */
+    .alert-wrapper.sc-ion-alert-md {
+        background-color:var(--ion-background-color);
+    }
+
   }
 }
 
