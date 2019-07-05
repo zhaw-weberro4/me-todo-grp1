@@ -72,28 +72,23 @@ public class LeanToDo implements CommandLineRunner {
         Project inbox = this.dummyProject("Inbox", "user", true);
         Project archive = this.dummyProject("Archive", "user", true);
         Project someday = this.dummyProject("Irgendwann", "user", true);
-        Project mond = this.dummyProject("Mond Landung", "user", false);
+        Project garten = this.dummyProject("Garten", "user", false);
         Project mb = this.dummyProject("Mobile Engineering", "user", false);
+        Project arbeit = this.dummyProject("Arbeit", "user", false);
 
         Tag programming = this.dummyTag("Programmieren", "user");
         Tag phone = this.dummyTag("Telefon", "user");
+        Tag kaufen = this.dummyTag("Einkaufen", "user");
+        Tag mails = this.dummyTag("Mails", "user");
 
-        this.dummyTask("Ferien eintragen", "Ferien mitteilen und eintragen", "user", programming, mond, 0);
-        this.dummyTask("Auf den Mond fliegen", "Mittag essen organisieren", "user", programming, mond, 3);
-        this.dummyTask("Bestellung abschicken", "Neue Bestellung abschicken", "user", programming, archive, 4);
-        this.dummyTask("Finish This app", "Programming the GTD App", "user", phone, mb, 5);
-        this.dummyTask("Phone Call", "Programming the GTD App", "user", phone, mb, 10);
-        this.dummyTask("Programming", "Programming the GTD App", "user", phone, mond, 40);
+        this.dummyTask("Ferien eintragen", "Ferien mitteilen und eintragen", "user", mails, arbeit, 1);
+        this.dummyTask("Rasen", "Rasen mähen, wenn schönes Wetter", "user", kaufen, garten, 3);
+        this.dummyTask("Bestellung abschicken", "Neue Bestellung abschicken", "user", phone, inbox, 4);
+        this.dummyTask("App fertig machen", "Auf moodle abgeben", "user", programming, mb, 5);
+        this.dummyTask("Max und Peter", "Video für Dozenten abgeben", "user", programming, mb, 2);
+        this.dummyTask("Programming", "Bugs beheben", "user", programming, archive, 40);
+        this.dummyTask("Werkzeug", "Neues Werkzeug kaufen", "user", kaufen, someday, 6);
 
-        
-        Task taskOne = new Task();
-        taskOne.setTitle("Finish This app");
-        taskOne.setDescription("Programming the GTD App");
-        taskOne.setDueDate(new Date());
-        taskOne.setUser("user");
-        taskOne.addTag(programming);
-        taskOne.setProject(mond);
-        taskRepository.save(taskOne);
     }
 
     private Project dummyProject(String title, String user, Boolean standard) {
