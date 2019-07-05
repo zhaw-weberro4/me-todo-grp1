@@ -68,16 +68,15 @@ public class TaskController {
 
     public boolean deleteTask(Long id, String user){
 
-        Task orig = taskRepository.getOne(id);
-        // task.setUser(user);
+        if(taskRepository.findById(id).isPresent()) {
+            Task orig = taskRepository.findById(id).get();
 
-        if(!orig.getUser().equals(user)) {
-            return false;
+            if(orig.getUser().equals(user)) {
+                taskRepository.delete(orig);
+                return true;
+            }
         }
-
-        //taskRepository.deleteById(task.getId());
-        taskRepository.delete(orig);
-        return true ;
+        return false;
     }
 
     public List<Task> getTaskByDueDate(Date dueDate, String user) {
