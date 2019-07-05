@@ -6,7 +6,7 @@ import { Tag } from 'src/app/model/tag'
 import { Task } from 'src/app/model/task'
 import { AlertController } from '@ionic/angular';
 import { TagsService } from 'src/app/services/tags.service';
-import {TasksService} from "../../services/tasks.service";
+import { TasksService } from "../../services/tasks.service";
 
 
 @Component({
@@ -16,9 +16,9 @@ import {TasksService} from "../../services/tasks.service";
 })
 export class FilterPage implements OnInit {
 
-  constructor( private router: Router, private projectsService: ProjectsService,
-               private tagsService: TagsService, public alertController: AlertController,
-               private tasksService: TasksService) { }
+  constructor(private router: Router, private projectsService: ProjectsService,
+    private tagsService: TagsService, public alertController: AlertController,
+    private tasksService: TasksService) { }
 
   public allProjects: Project[] = [];
   public allTags: Tag[] = [];
@@ -30,10 +30,16 @@ export class FilterPage implements OnInit {
     this.reloadAllTasks();
   }
 
+  ionViewWillEnter() {
+    this.reloadAllProjects();
+    this.reloadAllTags();
+    this.reloadAllTasks();
+  }
+
   public reloadAllTasks() {
-      this.tasksService.getAllTasks().subscribe((tasks: Task[]) => {
-          this.allTasks = tasks;
-      })
+    this.tasksService.getAllTasks().subscribe((tasks: Task[]) => {
+      this.allTasks = tasks;
+    })
   }
 
   public reloadAllProjects() {
@@ -148,27 +154,27 @@ export class FilterPage implements OnInit {
 
   countTasks(item, typ = 'project') {
     let i = 0;
-    for(const task of this.allTasks) {
-      if(typ === 'project') {
+    for (const task of this.allTasks) {
+      if (typ === 'project') {
         if (task.project.id === item.id) {
-            i++;
+          i++;
         }
-      } else if(typ === 'tag') {
-        for(const tag of task.tags) {
-            if (tag.id === item.id) {
-                i++;
-            }
+      } else if (typ === 'tag') {
+        for (const tag of task.tags) {
+          if (tag.id === item.id) {
+            i++;
+          }
         }
       }
     }
     return i;
   }
 
-  onOpenProject(projectId: number){
+  onOpenProject(projectId: number) {
     this.router.navigate(['/tabs/tasks/project/', projectId]);
   }
 
-  onOpenTag(tagId: number){
+  onOpenTag(tagId: number) {
     this.router.navigate(['/tabs/tasks/tag/', tagId]);
   }
 
@@ -179,7 +185,7 @@ export class FilterPage implements OnInit {
     const startDateString = startDate.toISOString();
     const endDateString = endDate.toISOString();
     const link = "/tabs/tasks/time/" + startDateString + "/" + endDateString;
-     this.router.navigate(['/tabs/tasks/time/', startDateString, endDateString]);
+    this.router.navigate(['/tabs/tasks/time/', startDateString, endDateString]);
   }
 
   weekDate(weekPoint: String): Date {
