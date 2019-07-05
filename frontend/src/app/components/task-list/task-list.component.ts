@@ -101,11 +101,6 @@ export class TaskListComponent implements OnInit, OnChanges {
         
       }
     );
-
-      /* this.projectService.findById(3).subscribe((data) => {
-        task.project = data;
-        this.updateTask(task);
-      }) */
   }
 
   public updateTask(task: Task) {
