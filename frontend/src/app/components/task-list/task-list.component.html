@@ -5,7 +5,7 @@
       <ion-item-option (click)="deleteTask(task)" color="danger">
         <ion-icon name="trash" size="large"></ion-icon>
       </ion-item-option>
-      <ion-item-option (click)="onPutToSomewhen(task)" color="warning">
+      <ion-item-option (click)="onPutToSomewhen(task)" *ngIf="!task.done" color="warning">
         <ion-icon name="alarm" size="large"></ion-icon>
       </ion-item-option>
     </ion-item-options>
