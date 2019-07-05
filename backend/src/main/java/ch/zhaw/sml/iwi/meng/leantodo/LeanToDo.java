@@ -75,11 +75,13 @@ public class LeanToDo implements CommandLineRunner {
         Project garten = this.dummyProject("Garten", "user", false);
         Project mb = this.dummyProject("Mobile Engineering", "user", false);
         Project arbeit = this.dummyProject("Arbeit", "user", false);
+        Project verein = this.dummyProject("Verein", "user", false);
 
         Tag programming = this.dummyTag("Programmieren", "user");
         Tag phone = this.dummyTag("Telefon", "user");
         Tag kaufen = this.dummyTag("Einkaufen", "user");
         Tag mails = this.dummyTag("Mails", "user");
+        Tag frage = this.dummyTag("Nachfragen", "user");
 
         this.dummyTask("Ferien eintragen", "Ferien mitteilen und eintragen", "user", mails, arbeit, 1);
         this.dummyTask("Rasen", "Rasen mähen, wenn schönes Wetter", "user", kaufen, garten, 3);
@@ -88,6 +90,10 @@ public class LeanToDo implements CommandLineRunner {
         this.dummyTask("Max und Peter", "Video für Dozenten abgeben", "user", programming, mb, 2);
         this.dummyTask("Programming", "Bugs beheben", "user", programming, archive, 40);
         this.dummyTask("Werkzeug", "Neues Werkzeug kaufen", "user", kaufen, someday, 6);
+        this.dummyTask("Neue Idee", "Max anrufen bezüglich neuer Idee", "user", phone, inbox, 2);
+        this.dummyTask("Vereinsreise", "Fragen wann Vereinsreise stattfindet", "user", frage, verein, 6);
+        this.dummyTask("Training", "Nachfragen wer ins Wochenendtraining kommt", "user", frage, verein, 6);
+        this.dummyTask("Ferien", "Reisebüro besuchen für Feriendestination", "user", phone, someday, 3);
 
     }
 
