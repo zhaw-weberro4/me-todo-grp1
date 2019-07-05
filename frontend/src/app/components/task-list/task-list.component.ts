@@ -89,13 +89,13 @@ export class TaskListComponent implements OnInit, OnChanges {
 
   async finish(task: Task) {
         task.done = true;
-        const originTaskId: number = task.project.id;
+        const originProjectId: number = task.project.id;
         const editTask = task;
         editTask.project.id = 2;
         editTask.project.title = "Archive";
       this.tasksService.updateTask(editTask).subscribe((data) => {
-          this.reloadTaskByProject(originTaskId);
-          console.log(originTaskId)
+          this.reloadTaskByProject(originProjectId);
+          console.log(originProjectId)
       }, err => {
           console.log(err);
         
@@ -135,13 +135,13 @@ export class TaskListComponent implements OnInit, OnChanges {
 
   onPutToSomewhen(task: Task) {
       alert("The status of " + task.title + " was changed to somewhen");
-      const originTaskId: number = task.project.id;
+      const originProjectId: number = task.project.id;
       const editTask = task;
       editTask.project.id = 3;
       editTask.project.title = "Irgendwann";
       this.tasksService.updateTask(editTask).subscribe((data) => {
-          this.reloadTaskByProject(originTaskId);
-          console.log(originTaskId)
+          this.reloadTaskByProject(originProjectId);
+          console.log(originProjectId)
       }, err => {
           console.log(err);
         
