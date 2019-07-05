@@ -88,11 +88,24 @@ export class TaskListComponent implements OnInit, OnChanges {
   }
 
   async finish(task: Task) {
-      task.done = true;
-      this.projectService.findById(3).subscribe((data) => {
+        task.done = true;
+        const originTaskId: number = task.project.id;
+        const editTask = task;
+        editTask.project.id = 2;
+        editTask.project.title = "Archive";
+      this.tasksService.updateTask(editTask).subscribe((data) => {
+          this.reloadTaskByProject(originTaskId);
+          console.log(originTaskId)
+      }, err => {
+          console.log(err);
+        
+      }
+    );
+
+      /* this.projectService.findById(3).subscribe((data) => {
         task.project = data;
         this.updateTask(task);
-      })
+      }) */
   }
 
   public updateTask(task: Task) {
