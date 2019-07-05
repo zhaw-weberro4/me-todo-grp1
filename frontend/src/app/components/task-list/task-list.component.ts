@@ -108,10 +108,10 @@ export class TaskListComponent implements OnInit, OnChanges {
 
   deleteTask(task: Task) {
       alert("Task " + task.title + " will be deleted");
-      const originTaskId: number = task.project.id;
+      const originProjectId: number = task.project.id;
       this.tasksService.deleteTask(task).subscribe((data) => {
-        this.reloadTaskByProject(originTaskId);
-        console.log(originTaskId)
+        this.reloadTaskByProject(originProjectId);
+        console.log(originProjectId)
     }, err => {
         console.log(err);
         }
