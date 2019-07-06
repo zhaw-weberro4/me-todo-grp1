@@ -91,9 +91,9 @@ public class LeanToDo implements CommandLineRunner {
         this.dummyTask("Programming", "Bugs beheben", "user", programming, archive, 40);
         this.dummyTask("Werkzeug", "Neues Werkzeug kaufen", "user", kaufen, someday, 6);
         this.dummyTask("Neue Idee", "Max anrufen bezüglich neuer Idee", "user", phone, inbox, 2);
-        this.dummyTask("Vereinsreise", "Fragen wann Vereinsreise stattfindet", "user", frage, verein, 6);
-        this.dummyTask("Training", "Nachfragen wer ins Wochenendtraining kommt", "user", frage, verein, 6);
-        this.dummyTask("Ferien", "Reisebüro besuchen für Feriendestination", "user", phone, someday, 3);
+        this.dummyTask("Vereinsreise", "Fragen wann Vereinsreise stattfindet", "user", frage, verein, 0);
+        this.dummyTask("Training", "Nachfragen wer ins Wochenendtraining kommt", "user", frage, verein, 0);
+        this.dummyTask("Ferien", "Reisebüro besuchen für Feriendestination", "user", phone, someday, 0);
 
     }
 
