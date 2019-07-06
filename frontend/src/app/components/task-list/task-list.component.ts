@@ -20,6 +20,7 @@ export class TaskListComponent implements OnInit, OnChanges {
   public allTasks: Task[] = [];
 
   ngOnInit() {
+    console.log("Hallo");
     if (this.activatedRoute.snapshot.params["projectId"] != null) {
         const projectId: number = this.activatedRoute.snapshot.params["projectId"];
         this.reloadTaskByProject(projectId);
@@ -138,6 +139,7 @@ export class TaskListComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
       this.reloadTasksByDueDate(this.selectedDate);
+      console.log("Hallo du");
   }
 
 }

@@ -28,6 +28,17 @@ export class FilterPage implements OnInit {
     this.reloadAllProjects();
     this.reloadAllTags();
     this.reloadAllTasks();
+    this.tasksService.updateFilter.subscribe((update) => {
+      if(update) {
+        this.reloadAll();
+      }
+    });
+  }
+
+  reloadAll(){
+    this.reloadAllProjects();
+    this.reloadAllTags();
+    this.reloadAllTasks();
   }
 
   ionViewWillEnter() {

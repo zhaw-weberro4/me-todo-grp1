@@ -8,8 +8,11 @@ import { Task } from '../model/task'
   providedIn: 'root'
 })
 export class TasksService {
+
+  currentTask: Task[];
   updatedTasks = new EventEmitter<Task[]>();
   tasksLoaded = new EventEmitter<boolean>();
+  updateFilter = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
   private apiUrl: string = 'http://localhost:8080/api';
