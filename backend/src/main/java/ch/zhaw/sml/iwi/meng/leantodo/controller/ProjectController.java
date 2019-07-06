@@ -19,15 +19,17 @@ public class ProjectController {
     @Autowired
     private TaskRepository taskRepository;
 
-
+    // Alle Projekte zurückgeben, um im Menü anzuzeigen
     public List<Project> listAllProjects(String loginName) {
         return projectRepository.findByUser(loginName);
     }
 
+    // Projekt nach Titel zurückgeben
     public Project getProjectByTitle(String title) {
         return projectRepository.findByTitle(title);
     }
 
+    // Projekt nach der ID zurückgeben
     public Project getProjectById(Long id) {
         if(projectRepository.findById(id).isPresent()){
             return projectRepository.findById(id).get();
@@ -36,25 +38,26 @@ public class ProjectController {
         }
     }
 
+    // Neues Projekt erstellen
     public void addProject(Project newProject, String user) {
         newProject.setId(null);
         newProject.setUser(user);
         projectRepository.save(newProject);
     }
 
+    // Projekt und alle dazugehörigen Tasks löschen
     public void deleteProject(Long id, String user) {
-
+        // Gibt es dieses Projekt
         if(projectRepository.findById(id).isPresent()) {
             Project project = projectRepository.findById(id).get();
-
+            // Wenn das Projekt gelöscht werden darf (Nicht Inbox, Archiv, Irgendwann)
             if(project.getUser().equals(user) && !project.isStandard()) {
+                // Alle Tasks in diesem Projekt löschen
                 List<Task> toDeleteTasks = taskRepository.findByProjectIdAndUser(id, user);
                 taskRepository.deleteAll(toDeleteTasks);
+                // Das Projekt löschen
                 projectRepository.delete(project);
             }
         }
     }
-
-
-    
 }

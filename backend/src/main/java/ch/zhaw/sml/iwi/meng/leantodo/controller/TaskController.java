@@ -88,7 +88,6 @@ public class TaskController {
     }
 
     public List<Task> getTasksByTag(Long id, String user) {
-        System.out.println("2");
         return taskRepository.findTasksByTag(id, user);
     }
     

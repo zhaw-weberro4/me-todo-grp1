@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from 'src/app/model/task';
-import {take} from 'rxjs/operators';
 import {ProjectsService} from '../../services/projects.service';
 import {TagsService} from "../../services/tags.service";
 
@@ -25,6 +24,7 @@ export class TasksPage implements OnInit {
   ngOnInit() {
     this.pageTitle = this.activatedRoute.snapshot.data["pageTitle"];
 
+    // Falls die Tasks aus einem Projekt geladen werden
     if (this.activatedRoute.snapshot.params["projectId"] != null) {
       const projectId: number = this.activatedRoute.snapshot.params["projectId"];
       this.projectService.findById(projectId).subscribe((project) => {
@@ -36,6 +36,7 @@ export class TasksPage implements OnInit {
       }, (error) => {
         console.log(error);
       })
+    // Falls die Tasks aus einem Tag geladen werden
     } else if (this.activatedRoute.snapshot.params["tagId"] != null) {
         const tagId: number = this.activatedRoute.snapshot.params["tagId"];
         this.tagService.findById(tagId).subscribe((tag) => {
@@ -43,14 +44,16 @@ export class TasksPage implements OnInit {
         }, (error) => {
             console.log(error);
         })
-    } else if (this.activatedRoute.snapshot.params["startDate"] != null) {
 
+      // Falls die Tasks von einem Datum geladen werden    
+    } else if (this.activatedRoute.snapshot.params["startDate"] != null) {
+      // Falls die Tasks von Heute geladen werden
     } else if (this.activatedRoute.snapshot.params["todayDate"] != null) {
 
     }
   }
 
-
+  // Task hinzufügen wird in der Komponente components/add-task ausgeführt.
   async addTask() {
     if (this.newTask.title != null && this.newTask.title != "") {
       this.tasksService.addNewTask(this.newTask).subscribe(
@@ -64,13 +67,13 @@ export class TasksPage implements OnInit {
         }
       );
     }
-  }
-
+  } 
+  // Task abschliessen
   async finish(task: Task) {
       task.done = true;
       this.updateTask(task);
   }
-
+  // Editierten Task in DB speichern
   public updateTask(task: Task) {
     this.tasksService.updateTask(task).subscribe(
         (data) => {
@@ -82,7 +85,7 @@ export class TasksPage implements OnInit {
       }
     );
   }
-
+  // Taskliste neu laden 
   public reloadAllTasks() {
     this.tasksService.getAllTasks().subscribe(
       data => {
@@ -93,7 +96,7 @@ export class TasksPage implements OnInit {
       }
     );
   }
-
+  // Task löschen
   deleteTask(task: Task) {
     alert("I will delete the task " + task.title);
   }
