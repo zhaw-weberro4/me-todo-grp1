@@ -14,6 +14,7 @@ export class TaskListComponent implements OnInit, OnChanges {
   constructor(private tasksService: TasksService, private activatedRoute: ActivatedRoute, 
     private projectService: ProjectsService, private router: Router) { }
 
+  // tslint:disable-next-line: no-input-rename
   @Input("selectedDate") selectedDate: Date;
 
   public allTasks: Task[] = [];
@@ -28,8 +29,6 @@ export class TaskListComponent implements OnInit, OnChanges {
         this.reloadTaskByTag(tagId);
 
     } else if (this.activatedRoute.snapshot.params["startDate"] != null) {
-        console.log(this.activatedRoute.snapshot.params["startDate"]);
-        console.log(this.activatedRoute.snapshot.params["endDate"]);
         const startDate: Date = new Date(this.activatedRoute.snapshot.params["startDate"]);
         const todayDate: Date = new Date(this.activatedRoute.snapshot.params["endDate"]);
     } else if (this.activatedRoute.snapshot.params["todayDate"] != null) {
@@ -39,8 +38,6 @@ export class TaskListComponent implements OnInit, OnChanges {
         this.tasksService.getTaskByDueDate(todayDate).subscribe(
             (data) => {
                 this.allTasks = data;
-            }, (err) => {
-                console.log(err);
             }
         );
     } else if (this.selectedDate) {
@@ -52,8 +49,6 @@ export class TaskListComponent implements OnInit, OnChanges {
       this.tasksService.getAllTasks().subscribe(
           data => {
               this.allTasks = data;
-          }, err => {
-              console.log(err);
           }
       );
   }
@@ -95,7 +90,6 @@ export class TaskListComponent implements OnInit, OnChanges {
         editTask.project.title = "Archive";
       this.tasksService.updateTask(editTask).subscribe((data) => {
           this.reloadTaskByProject(originProjectId);
-          console.log(originProjectId)
       }, err => {
           console.log(err);
         
@@ -120,7 +114,6 @@ export class TaskListComponent implements OnInit, OnChanges {
       const originProjectId: number = task.project.id;
       this.tasksService.deleteTask(task).subscribe((data) => {
         this.reloadTaskByProject(originProjectId);
-        console.log(originProjectId)
     }, err => {
         console.log(err);
         }
@@ -136,7 +129,6 @@ export class TaskListComponent implements OnInit, OnChanges {
       editTask.project.title = "Irgendwann";
       this.tasksService.updateTask(editTask).subscribe((data) => {
           this.reloadTaskByProject(originProjectId);
-          console.log(originProjectId)
       }, err => {
           console.log(err);
         

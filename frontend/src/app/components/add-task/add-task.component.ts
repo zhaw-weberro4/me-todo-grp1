@@ -63,7 +63,7 @@ export class AddTaskComponent implements OnInit {
           handler: (data) => {
             this.newTask.title = data.title;
             this.newTask.project = this.inboxProject;
-            this.taskservice.addNewTask(this.newTask).subscribe((data) => { }
+            this.taskservice.addNewTask(this.newTask).subscribe(() => { }
             )
           }
         }

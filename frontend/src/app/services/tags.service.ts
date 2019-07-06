@@ -11,24 +11,6 @@ export class TagsService {
 
   allTags: Tag[] = [];
 
-/*   allTags: Tag[] = [
-    {
-      id: 1,
-      title: "Telefon",
-      user: "user"
-    },
-    {
-      id: 2,
-      title: "Einkaufen",
-      user: "user"
-    },
-    {
-      id: 3,
-      title: "Mail",
-      user: "user"
-    },
-  ] */
-
   constructor(private http: HttpClient) { }
 
   private apiUrl: String = "http://localhost:8080/api"

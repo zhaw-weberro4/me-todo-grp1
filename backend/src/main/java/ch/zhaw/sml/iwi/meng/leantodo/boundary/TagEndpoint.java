@@ -3,10 +3,7 @@ package ch.zhaw.sml.iwi.meng.leantodo.boundary;
 
 import ch.zhaw.sml.iwi.meng.leantodo.controller.TagController;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Tag;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

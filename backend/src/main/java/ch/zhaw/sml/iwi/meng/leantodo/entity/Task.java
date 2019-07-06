@@ -1,9 +1,6 @@
 package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 

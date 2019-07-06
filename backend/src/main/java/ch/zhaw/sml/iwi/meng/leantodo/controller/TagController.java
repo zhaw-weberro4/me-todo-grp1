@@ -30,7 +30,6 @@ public class TagController {
     }
 
     public void deleteTag(Long id, String user) {
-        boolean success = false;
 
         if(tagRepository.findById(id).isPresent()) {
             Tag tag = tagRepository.findById(id).get();

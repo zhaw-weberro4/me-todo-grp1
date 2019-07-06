@@ -10,20 +10,20 @@ import { UserAuthResponse } from '../model/userAuthResponse';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router:Router, private tokenService:TokenService) { 
+  constructor(private router: Router, private tokenService: TokenService) { 
 
   }
 
   public currentAuthentification: UserAuthResponse = null;
 
-  public userName:string = "";
-  public password:string = "";
+  public userName: string = "";
+  public password: string = "";
 
   ngOnInit() {
   }
 
   async login() {
-    this.tokenService.login(this.userName,this.password).subscribe(data => {
+    this.tokenService.login(this.userName, this.password).subscribe(data => {
       this.currentAuthentification = data;
       this.password = "";
       this.router.navigateByUrl('/tabs/tasks');

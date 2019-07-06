@@ -72,8 +72,8 @@ export class FilterPage implements OnInit {
         }, {
           text: 'Hinzufügen',
           handler: (data) => {
-            if (data.title != null && data.title != "") {
-              let newProject = new Project(0, data.title, false, "user");
+            if (data.title != null && data.title !== "") {
+              const newProject = new Project(0, data.title, false, "user");
               this.projectsService.addNewProject(newProject).subscribe(
                 data => {
                   console.log("Successfully added new project.");
@@ -109,7 +109,7 @@ export class FilterPage implements OnInit {
         }, {
           text: 'Hinzufügen',
           handler: (data) => {
-            if (data.title != null && data.title != "") {
+            if (data.title != null && data.title !== "") {
               let newTag = new Tag(0, data.title, "user");
               this.tagsService.addNewTag(newTag).subscribe(
                 data => {
@@ -131,7 +131,7 @@ export class FilterPage implements OnInit {
   deleteProject(project: Project) {
     this.projectsService.deleteProject(project).subscribe(
       data => {
-        console.log("Successfully delete project.");
+        console.log("Successfully deleted project.");
         this.reloadAllProjects();
       }, err => {
         console.log(err);
