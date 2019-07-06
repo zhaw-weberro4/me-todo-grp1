@@ -3,16 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Task } from '../model/task'
+import {getBootstrapListener} from '@angular/router/src/router_module';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
 
-  currentTask: Task[];
-  updatedTasks = new EventEmitter<Task[]>();
-  tasksLoaded = new EventEmitter<boolean>();
   updateFilter = new EventEmitter<boolean>();
+  updateToday = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient, private router: Router) { }
   private apiUrl: string = 'http://localhost:8080/api';

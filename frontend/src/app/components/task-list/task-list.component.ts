@@ -44,6 +44,18 @@ export class TaskListComponent implements OnInit, OnChanges {
     } else if (this.selectedDate) {
         this.reloadTasksByDueDate(this.selectedDate);
     }
+
+    this.tasksService.updateToday.subscribe((update) => {
+        if(update) {
+            const todayDate: Date = new Date();
+
+            this.tasksService.getTaskByDueDate(todayDate).subscribe(
+                (data) => {
+                    this.allTasks = data;
+                }
+            );
+        }
+    })
   }
 
   public reloadAllTasks() {
@@ -139,7 +151,6 @@ export class TaskListComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
       this.reloadTasksByDueDate(this.selectedDate);
-      console.log("Hallo du");
   }
 
 }

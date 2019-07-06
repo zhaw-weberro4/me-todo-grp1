@@ -7,7 +7,7 @@
       <ion-label>Tasks</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button [routerLink]="[link]">
+    <ion-tab-button (click)="updateToday()" [routerLink]="[link]">
       <ion-icon name="clock"></ion-icon>
       <ion-label>Heute</ion-label>
     </ion-tab-button>
